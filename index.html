@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Future</title>
-
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="script.js"></script>
+    <title>News of the Future</title>
 </head>
 <body>
+    <h1>New York Times</h1>
+    <div class="container" ng-controller="mainCtrl">
+       <div class="box" ng-repeat="result in results">
+       <h2>{{result.title}}</h2>
+       <p>
+       {{result.abstract}}</a>
+       <!-- <p>{{result.media[0]["media-metadata"].url}} -->
+       <!-- <img src="{{result['media.media-metadata'.url]}}">-->
+       <img src="{{result.multimedia[2].url}}">
+       <p></p>
+        <a href="{{result.url}}">Read more...</a>
+    </div>
+    </div>
+   
+    
     
 </body>
 </html>
