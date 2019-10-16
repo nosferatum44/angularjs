@@ -1,0 +1,26 @@
+html {
+    width: 100%;
+}
+
+body {
+    background-color: #282c2b;
+    color: white;
+}
+a {
+    color: white;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.box {
+    flex-basis: 200px;
+    
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+}
