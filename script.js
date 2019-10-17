@@ -9,7 +9,7 @@ var app = angular
 
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('home');
-        $locationProvider.html5Mode(true);
+
         $stateProvider
             .state("home", {
                 url: "/",
@@ -24,7 +24,7 @@ var app = angular
 
             })
 
-
+        $locationProvider.html5Mode(true);
 
     })
     .controller("homeController", function ($scope) {
