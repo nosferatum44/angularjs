@@ -30,7 +30,7 @@ var app = angular
         $scope.message = "Home page";
     })
     .controller("articleController", function ($scope) {
-        $scope.message = "Home page";
+        $scope.message = "Folks page";
     })
 
 
