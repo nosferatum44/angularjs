@@ -29,9 +29,9 @@ var app = angular
     .controller("homeController", function ($scope) {
         $scope.message = "Home page";
     })
-    .controller("articleController", function ($scope) {
-        $scope.message = "Folks page";
-    })
+    // .controller("articleController", function ($scope) {
+    //     $scope.message = "Folks page";
+    // })
 
 
 /* app.controller('firstCtrl', function($scope, myFactory) {
