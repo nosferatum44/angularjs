@@ -12,7 +12,7 @@ var app = angular
         $stateProvider
             .state("home", {
                 url: "/home",
-                templateUrl: "home.html",
+                templateUrl: "templates/home.html",
                 controller: "homeController",
                 
             })
