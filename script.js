@@ -7,7 +7,7 @@ var app = angular
 
     .module("Demo", ["ui.router"])
 
-    .config(function ($stateProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('home');
         $stateProvider
             .state("home", {
