@@ -11,7 +11,7 @@ var app = angular
         $urlRouterProvider.otherwise('home');
         $stateProvider
             .state("home", {
-                url: "/home",
+                url: "",
                 templateUrl: "templates/home.html",
                 controller: "homeController",
 
