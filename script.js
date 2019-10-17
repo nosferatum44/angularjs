@@ -8,30 +8,30 @@ var app = angular
     .module("Demo", ["ui.router"])
 
     .config(function ($stateProvider) {
-        $urlStateProvider.otherwise("home");
+        // $urlStateProvider.otherwise("home");
         $stateProvider
             .state("home", {
                 url: "/home",
                 templateUrl: "templates/home.html",
                 controller: "homeController",
-                
+
             })
-            // .state("article", {
-            //     url: "/article",
-            //     templateUrl: "templates/article.html",
-            //     controller: "articleController",
-                
-            // })
-            
+            .state("article", {
+                url: "/article",
+                templateUrl: "templates/article.html",
+                controller: "articleController",
+
+            })
+
 
 
     })
     .controller("homeController", function ($scope) {
         $scope.message = "Home page";
     })
-    // .controller("articleController", function ($scope) {
-    //     $scope.message = "Folks page";
-    // })
+    .controller("articleController", function ($scope) {
+        $scope.message = "Folks page";
+    })
 
 
 /* app.controller('firstCtrl', function($scope, myFactory) {
