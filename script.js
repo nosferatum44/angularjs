@@ -9,7 +9,7 @@ var app = angular
 
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('home');
-        $locationProvider.hashPrefix('');
+        $locationProvider.html5Mode(true);
         $stateProvider
             .state("home", {
                 url: "/",
