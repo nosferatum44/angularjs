@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="Demo">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.23/angular-ui-router.js"></script>
     <script src="script.js"></script>
     <title>News of the Future</title>
 </head>
+
 <body>
+    <input type="button" id="theme" onclick="theme()" value="Day" />
     <h1>New York Times</h1>
-    <div class="container" ng-controller="mainCtrl">
-       <div class="box" ng-repeat="result in results">
-       <h2>{{result.title}}</h2>
-       <p>
-       {{result.abstract}}</a>
-       <img src="{{result.media[0]['media-metadata'][2].url}}">
-       <!-- <img src="{{result.multimedia[2].url}}">-->
-       <p></p>
-        <a href="{{result.url}}">Read more...</a>
+    <div>
+        <a ui-sref="home">Main Page</a>
+        
     </div>
-    </div>
-   
-    
-    
+    <ui-view></ui-view>
+
+
+
 </body>
+
 </html>
