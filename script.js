@@ -8,7 +8,7 @@ var app = angular
     .module("Demo", ["ui.router"])
 
     .config(function ($stateProvider) {
-        
+        $urlStateProvider.otherwise("home");
         $stateProvider
             .state("home", {
                 url: "/home",
