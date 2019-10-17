@@ -16,12 +16,12 @@ var app = angular
                 controller: "homeController",
                 
             })
-            .state("article", {
-                url: "/article",
-                templateUrl: "templates/article.html",
-                controller: "articleController",
+            // .state("article", {
+            //     url: "/article",
+            //     templateUrl: "templates/article.html",
+            //     controller: "articleController",
                 
-            })
+            // })
             
 
 
