@@ -7,7 +7,7 @@ var app = angular
 
     .module("Demo", ["ui.router"])
 
-    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('home');
 
         $stateProvider
@@ -26,7 +26,7 @@ var app = angular
 
         $locationProvider.html5Mode(true);
 
-    })
+    }])
     .controller("homeController", function ($scope) {
         $scope.message = "Home page";
     })
