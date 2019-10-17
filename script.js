@@ -7,8 +7,9 @@ var app = angular
 
     .module("Demo", ["ui.router"])
 
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('home');
+        $locationProvider.hashPrefix('');
         $stateProvider
             .state("home", {
                 url: "/",
