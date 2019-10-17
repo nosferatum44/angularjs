@@ -98,14 +98,12 @@ function theme() {
 
 
     if (i == 1) {
-        document.body.style.backgroundColor = "white";
-        document.body.style.color = "black";
         document.getElementById("theme").value = "Night";
+        document.querySelector('body').classList.add("nightTheme");
         i = 2;
     } else {
-        document.body.style.backgroundColor = "#282c2b";
-        document.body.style.color = "white";
         document.getElementById("theme").value = "Day";
+        document.querySelector("body").classList.remove("nightTheme");
         i = 1;
     }
 

@@ -24,3 +24,7 @@ a {
 h1 {
     text-align: center;
 }
+.nightTheme {
+    background-color:white;
+    color: black;
+}
