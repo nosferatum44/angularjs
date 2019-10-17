@@ -1,8 +1,3 @@
-/*$http({
-    method: 'GET',
-    url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez'
-});*/
-
 var app = angular
 
     .module("Demo", ["ui.router"])
@@ -24,8 +19,10 @@ var app = angular
 
             })
 
-        $locationProvider.html5Mode({enabled: true,
-            requireBase: false});
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
 
     }])
     .controller("homeController", function ($scope) {
@@ -36,48 +33,6 @@ var app = angular
     })
 
 
-/* app.controller('firstCtrl', function($scope, myFactory) {
-    console.log('firstCtrl');
-    $scope.myFactory = myFactory;
-    $scope.hello = 'hello world';
-});
-
-app.controller('secondCtrl', function($scope, myFactory) {
-    console.log('secondCtrl');
-    $scope.myFactory = myFactory;
-    $scope.hello = 'hello world';
-});
-
-app.factory('myFactory', function() {
-    return {
-        hello: 'hello world'
-    };
-});
-*/
-
-/*app.controller('firstCtrl', function($scope, myFactory) {
-    $scope.hello = "Hello world";
-
-    $scope.myFactory = myFactory;
-
-    $scope.getBookmark = function () {
-        return "My bookmark";
-    };
-
-    $scope.setHello = function (text) {
-        $scope.hello = text;
-    };
-});
-
-app.factory('myFactory', function() {
-    return {
-        hello: function () {
-            return 'hello world';
-        }
-    }
-});
-*/
-// ----------------------------
 
 app.controller('mainCtrl', function ($http, $scope) {
     $http(
@@ -94,6 +49,7 @@ app.controller('mainCtrl', function ($http, $scope) {
         });
 });
 
+/* Dark mode */
 var i = 1;
 
 function theme() {
@@ -111,3 +67,8 @@ function theme() {
 
 
 };
+/* Dark mode END*/
+
+
+// var slugify = require('slugify')
+// slugify('some string')
