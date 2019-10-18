@@ -32,13 +32,13 @@ var app = angular
 
     }])
     .controller("homeController", function ($scope) {
-        $scope.message = "Home page";
+        $scope.message = "Most Popular Posts";
     })
     .controller("articleController", function ($scope) {
-        $scope.message = "Folks page";
+        $scope.message = "Article Page";
     })
     .controller("mostRecentController", function ($scope) {
-        $scope.message = "Folks page";
+        $scope.message = "Most Recent Posts";
     })
     .controller('mainCtrl', function ($http, $scope) {
         $http(
