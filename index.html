@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.23/angular-ui-router.js"></script>
+    <script src="angular-slugify-master/angular-slugify.js"></script>
     <script src="script.js"></script>
     <title>News of the Future</title>
 </head>
@@ -18,7 +20,9 @@
         <h1>New York Times</h1>
         <a ui-sref="home">Most Popular</a>
         <a ui-sref="mostRecent">Most Recent</a>
-        <p>{{message}}</p>
+        <p></p>
+        <input type="text" ng-model="title">
+<p>Slug: {{title | slugify}}</p>
     </div>
     <ui-view></ui-view>
 

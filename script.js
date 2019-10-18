@@ -1,6 +1,6 @@
 var app = angular
 
-    .module("Demo", ["ui.router"])
+    .module("Demo", ["ui.router", "slugifier"])
 
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('home');
@@ -12,12 +12,27 @@ var app = angular
                 controller: "homeController",
 
             })
-            .state("article", {
-                url: "/article",
+            // .state("article", {
+            //     url: "/2",
+            //     templateUrl: "templates/article.html",
+            //     controller: "articleController",
+
+            // })
+            .state('article', {
+                url: "/:title",
                 templateUrl: "templates/article.html",
                 controller: "articleController",
+                
+                // templateProvider: function ($templateRequest, $stateParams) {
 
+                //     $scope.index = $stateParams.index + 1;
+                //     var templateName = 'file' + index + '.html';
+
+                //     return $templateRequest(templateName);
+                   
+                // },
             })
+       
             .state("mostRecent", {
                 url: "/",
                 templateUrl: "templates/mostRecent.html",
@@ -32,7 +47,7 @@ var app = angular
 
     }])
     .controller("homeController", function () {
-  
+
     })
     .controller("articleController", function () {
 
@@ -54,16 +69,14 @@ var app = angular
                 console.log("there's a fucking error, man...");
             });
 
-            $scope.click = function() {
-                console.log("It's been clicked!");
-            }
+        
     })
     .controller('mostRecent', function ($http, $scope) {
         $http(
             {
                 method: 'GET',
 
-            url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
             }).then(function successCallback(result) {
                 console.log('success', result);
                 $scope.results = result.data.results;
@@ -102,3 +115,9 @@ function theme() {
 
 // var slugify = require('slugify')
 // slugify('some string')
+
+function MyCtrl($scope, Slug) {
+    $scope.slugify = function(input) {
+        $scope.mySlug = Slug.slugify(input);
+    };
+}
