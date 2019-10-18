@@ -19,7 +19,7 @@ var app = angular
 
             // })
             .state('article', {
-                url: "/:title",
+                url: "/:title?index:int",
                 templateUrl: "templates/article.html",
                 controller: "articleController",
                 
@@ -32,14 +32,20 @@ var app = angular
                    
                 // },
             })
-       
+            .state("article2", {
+                url: "/",
+                templateUrl: "templates/article2.html",
+                controller: "article2Controller",
+
+            })
+            // .s
             .state("mostRecent", {
                 url: "/",
                 templateUrl: "templates/mostRecent.html",
                 controller: "mostRecentController",
 
             })
-
+/* Remove #! from url */
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
@@ -50,6 +56,9 @@ var app = angular
 
     })
     .controller("articleController", function () {
+
+    })
+    .controller("article2Controller", function () {
 
     })
     .controller("mostRecentController", function () {
@@ -113,8 +122,7 @@ function theme() {
 /* Dark mode END*/
 
 
-// var slugify = require('slugify')
-// slugify('some string')
+// slugify //
 
 function MyCtrl($scope, Slug) {
     $scope.slugify = function(input) {
