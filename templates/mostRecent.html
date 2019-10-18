@@ -1,7 +1,7 @@
 
 <div class="container" ng-controller="mostRecent">
         
-    <div class="box" ng-repeat="result in results">
+    <div class="box" ng-repeat="result in results" ng-if="result.multimedia[2].url != null">
     <h2>{{result.title}}</h2>
     <p>
     {{result.abstract}}</a>
