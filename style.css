@@ -5,6 +5,7 @@ html {
 body {
     background-color: #282c2b;
     color: white;
+  
 }
 a {
     color: white;
@@ -21,7 +22,7 @@ a {
     padding: 30px;
 }
 
-h1 {
+.content {
     text-align: center;
 }
 .nightTheme {
