@@ -31,23 +31,24 @@ var app = angular
     .controller("articleController", function ($scope) {
         $scope.message = "Folks page";
     })
+    .controller('mainCtrl', function ($http, $scope) {
+        $http(
+            {
+                method: 'GET',
+                url: 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',  /*Most populars*/
+                /*  url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+            }).then(function successCallback(result) {
+                console.log('success', result);
+                $scope.results = result.data.results;
+    
+            }, function errorCallback(result) {
+                console.log("there's a fucking error, man...");
+            });
+    });
 
 
 
-app.controller('mainCtrl', function ($http, $scope) {
-    $http(
-        {
-            method: 'GET',
-            url: 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',  /*Most populars*/
-            /*  url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
-        }).then(function successCallback(result) {
-            console.log('success', result);
-            $scope.results = result.data.results;
-
-        }, function errorCallback(result) {
-            console.log("there's a fucking error, man...");
-        });
-});
+app
 
 /* Dark mode */
 var i = 1;
