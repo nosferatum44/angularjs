@@ -31,7 +31,15 @@ var app = angular
         });
 
     }])
-    
+    .controller("homeController", function () {
+  
+    })
+    .controller("articleController", function () {
+
+    })
+    .controller("mostRecentController", function () {
+
+    })
     .controller('mainCtrl', function ($http, $scope) {
         $http(
             {
