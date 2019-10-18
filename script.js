@@ -53,6 +53,10 @@ var app = angular
             }, function errorCallback(result) {
                 console.log("there's a fucking error, man...");
             });
+
+            $scope.click = function() {
+                console.log("It's been clicked!");
+            }
     })
     .controller('mostRecent', function ($http, $scope) {
         $http(
@@ -71,7 +75,9 @@ var app = angular
 
 
 
-app
+
+
+
 
 /* Dark mode */
 var i = 1;
