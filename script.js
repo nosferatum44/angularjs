@@ -37,6 +37,9 @@ var app = angular
     .controller("articleController", function ($scope) {
         $scope.message = "Folks page";
     })
+    .controller("mostRecentController", function ($scope) {
+        $scope.message = "Folks page";
+    })
     .controller('mainCtrl', function ($http, $scope) {
         $http(
             {
