@@ -31,15 +31,7 @@ var app = angular
         });
 
     }])
-    .controller("homeController", function ($scope) {
-        $scope.message = "Most Popular Posts";
-    })
-    .controller("articleController", function ($scope) {
-        $scope.message = "Article Page";
-    })
-    .controller("mostRecentController", function ($scope) {
-        $scope.message = "Most Recent Posts";
-    })
+    
     .controller('mainCtrl', function ($http, $scope) {
         $http(
             {
