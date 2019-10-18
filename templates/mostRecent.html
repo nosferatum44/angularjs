@@ -1,7 +1,7 @@
 
-<div class="container" ng-controller="mostRecent">
+<div class="container" ng-controller="mostRecent" ng-cloak>
         
-    <div class="box" ng-repeat="result in results" ng-if="result.multimedia[2].url != null" ng-cloak>
+    <div class="box" ng-repeat="result in results" ng-if="result.multimedia[2].url != null">
     <h2>{{result.title}}</h2>
     <p>
     {{result.abstract}}</a>
