@@ -18,6 +18,12 @@ var app = angular
                 controller: "articleController",
 
             })
+            .state("mostRecent", {
+                url: "/",
+                templateUrl: "templates/mostRecent.html",
+                controller: "mostRecentController",
+
+            })
 
         $locationProvider.html5Mode({
             enabled: true,
@@ -40,7 +46,21 @@ var app = angular
             }).then(function successCallback(result) {
                 console.log('success', result);
                 $scope.results = result.data.results;
-    
+
+            }, function errorCallback(result) {
+                console.log("there's a fucking error, man...");
+            });
+    })
+    .controller('mostRecent', function ($http, $scope) {
+        $http(
+            {
+                method: 'GET',
+
+            url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+            }).then(function successCallback(result) {
+                console.log('success', result);
+                $scope.results = result.data.results;
+
             }, function errorCallback(result) {
                 console.log("there's a fucking error, man...");
             });
