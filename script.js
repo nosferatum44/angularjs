@@ -191,3 +191,4 @@ function MyCtrl($scope, Slug) {
         $scope.mySlug = Slug.slugify(input);
     };
 }
+

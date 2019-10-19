@@ -112,3 +112,10 @@ svg {
     }
     
 }
+
+
+/* Changing background colors on every other element */
+
+   .box:nth-child(even){
+    background-color:rgb(50, 53, 53);
+   }
