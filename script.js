@@ -10,7 +10,7 @@ var app = angular
                 url: "/",
                 templateUrl: "templates/home.html",
                 controller: "homeController",
-                
+
 
             })
             // .state("article", {
@@ -23,14 +23,32 @@ var app = angular
                 url: "/article/:articleSlug",
                 templateUrl: "templates/article.html",
                 controller: "articleController",
-               
+                resolve: {
+                    article: function ($stateParams, $http) {
+                        return $http(
+                            {
+                                method: 'POST',
+                                url: 'https://resoomer.pro/websummarizer/',
+                                data: JSON.stringify({
+                                    url: $stateParams.url,
+                                    API_KEY: 'D64EB1C6702E3E1927614F672289E433'
+                                })
+                            }
+                        ).then(function(result) {
+                            console.log(result)
+                        })
+                    },
+                },
+                params: {
+                    url: ''
+                }                
                 // templateProvider: function ($templateRequest, $stateParams) {
 
                 //     $scope.index = $stateParams.index + 1;
                 //     var templateName = 'file' + index + '.html';
 
                 //     return $templateRequest(templateName);
-                   
+
                 // },
             })
             .state("article2", {
@@ -45,7 +63,7 @@ var app = angular
                 controller: "mostRecentController",
 
             })
-/* Remove #! from url */
+        /* Remove #! from url */
         // $locationProvider.html5Mode({
         //     enabled: true,
         //     requireBase: false
@@ -78,8 +96,8 @@ var app = angular
                 console.log("there's a fucking error, man...");
             });
 
-            
-        
+
+
     })
     .controller('mostRecent', function ($http, $scope) {
         $http(
@@ -128,7 +146,7 @@ function theme() {
 // slugify //
 
 function MyCtrl($scope, Slug) {
-    $scope.slugify = function(input) {
+    $scope.slugify = function (input) {
         $scope.mySlug = Slug.slugify(input);
     };
 }
