@@ -20,14 +20,10 @@ var app = angular
 
             // })
             .state('article', {
-                url: "/headline=:title",
+                url: "/article/:articleSlug",
                 templateUrl: "templates/article.html",
                 controller: "articleController",
-                resolve: {
-                    article: function($stateParams, $http) {
-                      console.log($stateParams)
-                      return null
-                    }}
+               
                 // templateProvider: function ($templateRequest, $stateParams) {
 
                 //     $scope.index = $stateParams.index + 1;
@@ -60,7 +56,7 @@ var app = angular
 
     })
     .controller("articleController", function () {
-        article;
+
     })
     .controller("article2Controller", function () {
 
