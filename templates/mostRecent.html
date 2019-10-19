@@ -7,6 +7,12 @@
     {{result.abstract}}</a>
     <img src="{{result.multimedia[2].url}}">
     <p></p>
-    <a ui-sref="article2 ({title:'{{result.title | slugify}}'})">Read more...</a>
+    <a ui-sref="article2 ({
+        articleSlug:'{{result.title | slugify}}', 
+        title: '{{result.title}}',
+        url: '{{result.url}}', 
+        image: '{{result.multimedia[2].url}}',
+        externalUrl: '{{result.url}}'
+    })">Read more...</a>
  </div>
  </div>
