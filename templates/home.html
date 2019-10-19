@@ -5,7 +5,13 @@
         {{result.abstract}}</a>
         <img src="{{result.media[0]['media-metadata'][2].url}}">
         <p></p>
-        <a ui-sref="article ({articleSlug:'{{result.title | slugify}}', url: '{{result.url}}'})">Read more...</a>
+        <a ui-sref="article ({
+            articleSlug:'{{result.title | slugify}}', 
+            title: '{{result.title}}',
+            url: '{{result.url}}', 
+            image: '{{result.media[0]['media-metadata'][2].url}}',
+            externalUrl: '{{result.url}}'
+        })">Read more...</a>
     </div>
 </div>
 

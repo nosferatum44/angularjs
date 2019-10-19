@@ -1,9 +1,9 @@
 <div class="container" ng-controller="mainCtrl" ng-cloak>
-       <div class="box" ng-model="articleController">
-       <h2>{{results[0].title}}</h2>
-       <p>{{articleText}}</p>
-       <img src="{{results[0].media[0]['media-metadata'][2].url}}">
-       <p></p>
-        <a href="article ({index: $index})" >Read more...</a>
+    <div class="box" ng-model="articleController">
+        <h2>{{title}}</h2>
+        <p>{{articleText}}</p>
+        <img src="{{image}}">
+        <p></p>
+        <a href="{{externalUrl}}">Read more...</a>
     </div>
-    </div>
+</div>
