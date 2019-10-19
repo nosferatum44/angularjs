@@ -20,7 +20,7 @@ var app = angular
 
             // })
             .state('article', {
-                url: "/headline=:title?index:int",
+                url: "/headline=:title",
                 templateUrl: "templates/article.html",
                 controller: "articleController",
                 resolve: {
