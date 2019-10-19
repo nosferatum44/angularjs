@@ -30,7 +30,7 @@ var app = angular
                         formData.append("url", $stateParams.url);
                        
                         console.log($stateParams);
-                        formData.append("API_KEY", "D64EB1C6702E3E1927614F672289E433");
+                        formData.append("API_KEY", "46014746951CA2FDB1D88548963945FD");
                         return $http(
                             {
                                 method: 'POST',
@@ -59,9 +59,34 @@ var app = angular
                 // },
             })
             .state("article2", {
-                url: "/",
+                url: "/most-recent/:articleSlug",
                 templateUrl: "templates/article2.html",
                 controller: "article2Controller",
+                resolve: {
+                    article: function ($stateParams, $http) {
+                        var formData = new FormData();
+
+                        formData.append("url", $stateParams.url);
+                       
+                        console.log($stateParams);
+                        formData.append("API_KEY", "46014746951CA2FDB1D88548963945FD");
+                        return $http(
+                            {
+                                method: 'POST',
+                                url: 'https://resoomer.pro/websummarizer/',
+                                data: formData,
+                                headers: { 'Content-Type': undefined },
+                                
+                            }
+                        )
+                    },
+                },
+                params: {
+                    url: '',
+                    image: '',
+                    title: '',
+                    externalUrl: ''
+                }
 
             })
             .state("mostRecent", {
@@ -81,15 +106,16 @@ var app = angular
 
     })
     .controller("articleController", function (article, $scope, $stateParams) {
-        console.log(article)
-        $scope.articleText = article.data.longText.content
+        $scope.articleText = article.data.mediumText.content
         $scope.image = $stateParams.image
         $scope.title = $stateParams.title
         $scope.externalUrl = $stateParams.externalUrl
-        console.log($scope.image)
     })
-    .controller("article2Controller", function () {
-
+    .controller("article2Controller", function (article, $scope, $stateParams) {
+        $scope.articleText = article.data.mediumText.content
+        $scope.image = $stateParams.image
+        $scope.title = $stateParams.title
+        $scope.externalUrl = $stateParams.externalUrl
     })
     .controller("mostRecentController", function () {
 
@@ -99,7 +125,6 @@ var app = angular
             {
                 method: 'GET',
                 url: 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',  /*Most populars*/
-                /*  url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
             }).then(function successCallback(result) {
                 console.log('success', result);
                 $scope.results = result.data.results;
@@ -115,7 +140,6 @@ var app = angular
         $http(
             {
                 method: 'GET',
-
                 url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
             }).then(function successCallback(result) {
                 console.log('success', result);

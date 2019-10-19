@@ -1,16 +1,18 @@
-html {
-    width: 100%;
-}
+html {}
 
 body {
     background-color: #282c2b;
     color: white;
     font-family: 'Roboto';
-  
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
+
 a {
     color: white;
 }
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -19,26 +21,42 @@ a {
 
 .box {
     flex-basis: 200px;
-    
     padding: 30px;
+}
+
+.articleBox {
+    
+    display: block;
+    width: 60%;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.articleBox img {
+    width: 60%;
 }
 
 .content {
     text-align: center;
 }
+
 .nightTheme {
-    background-color:white;
+    background-color: white;
     color: black;
 }
+
 .nightTheme a {
     color: black;
 }
+
 svg {
     width: 400px;
 }
+
 .nightTheme svg {
     fill: black;
 }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
-  }
+}
