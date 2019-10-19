@@ -23,7 +23,11 @@ var app = angular
                 url: "/headline=:title?index:int",
                 templateUrl: "templates/article.html",
                 controller: "articleController",
-                
+                resolve: {
+                    article: function($stateParams, $http) {
+                      console.log($stateParams)
+                      return null
+                    }}
                 // templateProvider: function ($templateRequest, $stateParams) {
 
                 //     $scope.index = $stateParams.index + 1;
@@ -56,7 +60,7 @@ var app = angular
 
     })
     .controller("articleController", function () {
-
+        article;
     })
     .controller("article2Controller", function () {
 
