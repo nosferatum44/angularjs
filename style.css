@@ -121,3 +121,6 @@ svg {
    .box:nth-child(even){
     background-color:rgb(50, 53, 53);
    }
+   .nightTheme .box:nth-child(even){
+    background-color: rgba(50, 53, 53, 0.08);
+}
