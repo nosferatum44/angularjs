@@ -112,7 +112,10 @@ svg {
     #darkMode {
         display: none;
     }
+    .noArticle {
+        padding-top: 150px;
     
+    }
 }
 
 
