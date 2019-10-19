@@ -10,6 +10,7 @@ var app = angular
                 url: "/",
                 templateUrl: "templates/home.html",
                 controller: "homeController",
+                
 
             })
             // .state("article", {
@@ -19,10 +20,14 @@ var app = angular
 
             // })
             .state('article', {
-                url: "/:title?index:int",
+                url: "/headline=:title?index:int",
                 templateUrl: "templates/article.html",
                 controller: "articleController",
-                
+                resolve: {
+                    article: function($stateParams, $http) {
+                      console.log($stateParams)
+                      return null
+                    }}
                 // templateProvider: function ($templateRequest, $stateParams) {
 
                 //     $scope.index = $stateParams.index + 1;
@@ -38,7 +43,6 @@ var app = angular
                 controller: "article2Controller",
 
             })
-            // .s
             .state("mostRecent", {
                 url: "/",
                 templateUrl: "templates/mostRecent.html",
@@ -46,17 +50,17 @@ var app = angular
 
             })
 /* Remove #! from url */
-        $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false
-        });
+        // $locationProvider.html5Mode({
+        //     enabled: true,
+        //     requireBase: false
+        // });
 
     }])
     .controller("homeController", function () {
 
     })
     .controller("articleController", function () {
-
+        article;
     })
     .controller("article2Controller", function () {
 
@@ -78,6 +82,7 @@ var app = angular
                 console.log("there's a fucking error, man...");
             });
 
+            
         
     })
     .controller('mostRecent', function ($http, $scope) {
@@ -110,10 +115,12 @@ function theme() {
     if (i == 1) {
         document.getElementById("theme").value = "Night";
         document.querySelector('body').classList.add("nightTheme");
+        document.querySelector('.svg').classList.add("nightTheme");
         i = 2;
     } else {
         document.getElementById("theme").value = "Day";
         document.querySelector("body").classList.remove("nightTheme");
+        document.querySelector(".svg").classList.remove("nightTheme");
         i = 1;
     }
 
