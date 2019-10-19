@@ -3,8 +3,7 @@
         
     <div class="box" ng-repeat="result in results" ng-if="result.multimedia[2].url != null">
     <h2>{{result.title}}</h2>
-    <p>
-    {{result.abstract}}</a>
+    <p class="abstract">{{result.abstract}}</p>
     <img src="{{result.multimedia[2].url}}">
     <p></p>
     <a ui-sref="article2 ({

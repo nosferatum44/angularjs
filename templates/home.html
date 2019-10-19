@@ -1,8 +1,8 @@
 <div class="container" ng-controller="mainCtrl" ng-cloak
     ng-if="result.title != 'Read Trump’s Letter to President Erdogan of Turkey'">
-    <div class="box" ng-repeat="result in results">
+    <div class="box" ng-repeat="result in results" >
         <h2>{{result.title}}</h2>
-        {{result.abstract}}</a>
+        <p class="abstract">{{result.abstract}}</p>
         <img src="{{result.media[0]['media-metadata'][2].url}}">
         <p></p>
         <a ui-sref="article ({

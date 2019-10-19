@@ -43,7 +43,7 @@ var app = angular
                     },
                 },
                 params: {
-                    url: '',
+                    url: null,
                     image: '',
                     title: '',
                     externalUrl: ''
@@ -82,7 +82,7 @@ var app = angular
                     },
                 },
                 params: {
-                    url: '',
+                    url: null,
                     image: '',
                     title: '',
                     externalUrl: ''
@@ -106,16 +106,19 @@ var app = angular
 
     })
     .controller("articleController", function (article, $scope, $stateParams) {
+        console.log(article)
         $scope.articleText = article.data.mediumText.content
         $scope.image = $stateParams.image
         $scope.title = $stateParams.title
         $scope.externalUrl = $stateParams.externalUrl
     })
     .controller("article2Controller", function (article, $scope, $stateParams) {
+        console.log(article)
         $scope.articleText = article.data.mediumText.content
         $scope.image = $stateParams.image
         $scope.title = $stateParams.title
         $scope.externalUrl = $stateParams.externalUrl
+        console.log($scope.articleText)
     })
     .controller("mostRecentController", function () {
 
@@ -125,6 +128,7 @@ var app = angular
             {
                 method: 'GET',
                 url: 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',  /*Most populars*/
+                /*  url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
             }).then(function successCallback(result) {
                 console.log('success', result);
                 $scope.results = result.data.results;
@@ -140,6 +144,7 @@ var app = angular
         $http(
             {
                 method: 'GET',
+
                 url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
             }).then(function successCallback(result) {
                 console.log('success', result);
@@ -163,12 +168,12 @@ function theme() {
 
 
     if (darkModeIndicator == 0) {
-        document.getElementById("theme").value = "Night";
+        document.getElementById("darkMode").value = "Night";
         document.querySelector('body').classList.add("nightTheme");
         document.querySelector('.svg').classList.add("nightTheme");
         darkModeIndicator = 1;
     } else {
-        document.getElementById("theme").value = "Day";
+        document.getElementById("darkMode").value = "Day";
         document.querySelector("body").classList.remove("nightTheme");
         document.querySelector(".svg").classList.remove("nightTheme");
         darkModeIndicator = 0;
