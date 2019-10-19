@@ -1,10 +1,13 @@
-
-<div class="container" ng-controller="mainCtrl" ng-cloak ng-if="result.title != 'Read Trump’s Letter to President Erdogan of Turkey'">
-       <div class="box" ng-repeat="result in results">
-       <h2>{{result.title}}</h2>
-       {{result.abstract}}</a>
-       <img src="{{result.media[0]['media-metadata'][2].url}}">
-       <p></p>
-        <a ui-sref="article ({title:'{{result.title | slugify}}', url: '{{result.url})'">Read more...</a>
+<div class="container" ng-controller="mainCtrl" ng-cloak
+    ng-if="result.title != 'Read Trump’s Letter to President Erdogan of Turkey'">
+    <div class="box" ng-repeat="result in results">
+        <h2>{{result.title}}</h2>
+        {{result.abstract}}</a>
+        <img src="{{result.media[0]['media-metadata'][2].url}}">
+        <p></p>
+        <a ui-sref="article ({
+            articleSlug:'{{result.title | slugify}}', 
+            url: '{{result.url})'
+        })">Read more...</a>
     </div>
-    </div>
+</div>
