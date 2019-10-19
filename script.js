@@ -37,15 +37,16 @@ var app = angular
                                 url: 'https://resoomer.pro/websummarizer/',
                                 data: formData,
                                 headers: { 'Content-Type': undefined },
+                                
                             }
-                        ).then(function (result) {
-                            // console.log(result)
-                            return result
-                        })
+                        )
                     },
                 },
                 params: {
-                    url: ''
+                    url: '',
+                    image: '',
+                    title: '',
+                    externalUrl: ''
                 }
 
                 // templateProvider: function ($templateRequest, $stateParams) {
@@ -79,9 +80,13 @@ var app = angular
     .controller("homeController", function () {
 
     })
-    .controller("articleController", function (article, $scope) {
+    .controller("articleController", function (article, $scope, $stateParams) {
         console.log(article)
-        $scope.articleText = article.data.mediumText.content
+        $scope.articleText = article.data.longText.content
+        $scope.image = $stateParams.image
+        $scope.title = $stateParams.title
+        $scope.externalUrl = $stateParams.externalUrl
+        console.log($scope.image)
     })
     .controller("article2Controller", function () {
 
