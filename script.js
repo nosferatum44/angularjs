@@ -1,6 +1,6 @@
 var app = angular
 
-    .module("Demo", ["ui.router", "slugifier"])
+    .module("Demo", ["ui.router", "slugifier", "ngSanitize"])
 
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('');
@@ -111,6 +111,7 @@ var app = angular
         $scope.image = $stateParams.image
         $scope.title = $stateParams.title
         $scope.externalUrl = $stateParams.externalUrl
+        // $scope.articleText = $scope.articleText.replace(/<br\s*[\/]?>/gi,"\n");
     })
     .controller("article2Controller", function (article, $scope, $stateParams) {
         console.log(article)

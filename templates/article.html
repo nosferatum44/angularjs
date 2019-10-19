@@ -1,9 +1,12 @@
 <div class="articleBox" ng-cloak>
-    <div ng-model="articleController">
+    <div ng-model="articleController" ng-if="articleText != ''">
         <h2>{{title}}</h2>
-        <p>{{articleText}}</p>
+        <p ng-bind-html="articleText">{{articleText}}</p>
         <img src="{{image}}">
         <p></p>
         <a href="{{externalUrl}}">Read more...</a>
+    </div>
+    <div class="noArticle" ng-model="article2Controller" ng-if="articleText == ''">
+        <h2>There's no article yet. We're sorry :(</h2>
     </div>
 </div>
