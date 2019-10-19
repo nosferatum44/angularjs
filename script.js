@@ -25,23 +25,29 @@ var app = angular
                 controller: "articleController",
                 resolve: {
                     article: function ($stateParams, $http) {
+                        var formData = new FormData();
+
+                        formData.append("url", $stateParams.url);
+                       
+                        console.log($stateParams);
+                        formData.append("API_KEY", "D64EB1C6702E3E1927614F672289E433");
                         return $http(
                             {
                                 method: 'POST',
                                 url: 'https://resoomer.pro/websummarizer/',
-                                data: JSON.stringify({
-                                    url: $stateParams.url,
-                                    API_KEY: 'D64EB1C6702E3E1927614F672289E433'
-                                })
+                                data: formData,
+                                headers: { 'Content-Type': undefined },
                             }
-                        ).then(function(result) {
-                            console.log(result)
+                        ).then(function (result) {
+                            // console.log(result)
+                            return result
                         })
                     },
                 },
                 params: {
                     url: ''
-                }                
+                }
+
                 // templateProvider: function ($templateRequest, $stateParams) {
 
                 //     $scope.index = $stateParams.index + 1;
@@ -73,8 +79,9 @@ var app = angular
     .controller("homeController", function () {
 
     })
-    .controller("articleController", function () {
-
+    .controller("articleController", function (article, $scope) {
+        console.log(article)
+        $scope.articleText = article.data.mediumText.content
     })
     .controller("article2Controller", function () {
 
@@ -121,21 +128,21 @@ var app = angular
 
 
 /* Dark mode */
-var i = 1;
+var darkModeIndicator = 0;
 
 function theme() {
 
 
-    if (i == 1) {
+    if (darkModeIndicator == 0) {
         document.getElementById("theme").value = "Night";
         document.querySelector('body').classList.add("nightTheme");
         document.querySelector('.svg').classList.add("nightTheme");
-        i = 2;
+        darkModeIndicator = 1;
     } else {
         document.getElementById("theme").value = "Day";
         document.querySelector("body").classList.remove("nightTheme");
         document.querySelector(".svg").classList.remove("nightTheme");
-        i = 1;
+        darkModeIndicator = 0;
     }
 
 
