@@ -24,7 +24,9 @@ a {
     padding: 30px;
 }
 #darkMode {
-    float: right;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     margin: 20px;
 }
 .articleBox {
@@ -43,7 +45,7 @@ a {
 }
 .noArticle {
     text-align: center;
-    padding: 350px;
+    padding-top: 250px;
 
 }
 .content {
