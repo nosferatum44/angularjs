@@ -3,7 +3,7 @@ var app = angular
     .module("Demo", ["ui.router", "slugifier"])
 
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
-        $urlRouterProvider.otherwise('home');
+        $urlRouterProvider.otherwise('');
 
         $stateProvider
             .state("home", {
