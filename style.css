@@ -32,7 +32,12 @@ a {
 .nightTheme a {
     color: black;
 }
-
+svg {
+    width: 400px;
+}
+.nightTheme svg {
+    fill: black;
+}
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
   }
