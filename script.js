@@ -13,12 +13,7 @@ var app = angular
 
 
             })
-            // .state("article", {
-            //     url: "/2",
-            //     templateUrl: "templates/article.html",
-            //     controller: "articleController",
 
-            // })
             .state('article', {
                 url: "/article/:articleSlug",
                 templateUrl: "templates/article.html",
@@ -28,7 +23,7 @@ var app = angular
                         var formData = new FormData();
 
                         formData.append("url", $stateParams.url);
-                       
+
                         console.log($stateParams);
                         formData.append("API_KEY", "46014746951CA2FDB1D88548963945FD");
                         return $http(
@@ -37,7 +32,7 @@ var app = angular
                                 url: 'https://resoomer.pro/websummarizer/',
                                 data: formData,
                                 headers: { 'Content-Type': undefined },
-                                
+
                             }
                         )
                     },
@@ -49,14 +44,6 @@ var app = angular
                     externalUrl: ''
                 }
 
-                // templateProvider: function ($templateRequest, $stateParams) {
-
-                //     $scope.index = $stateParams.index + 1;
-                //     var templateName = 'file' + index + '.html';
-
-                //     return $templateRequest(templateName);
-
-                // },
             })
             .state("article2", {
                 url: "/most-recent/:articleSlug",
@@ -67,7 +54,7 @@ var app = angular
                         var formData = new FormData();
 
                         formData.append("url", $stateParams.url);
-                       
+
                         console.log($stateParams);
                         formData.append("API_KEY", "46014746951CA2FDB1D88548963945FD");
                         return $http(
@@ -76,7 +63,7 @@ var app = angular
                                 url: 'https://resoomer.pro/websummarizer/',
                                 data: formData,
                                 headers: { 'Content-Type': undefined },
-                                
+
                             }
                         )
                     },
@@ -111,7 +98,6 @@ var app = angular
         $scope.image = $stateParams.image
         $scope.title = $stateParams.title
         $scope.externalUrl = $stateParams.externalUrl
-        // $scope.articleText = $scope.articleText.replace(/<br\s*[\/]?>/gi,"\n");
     })
     .controller("article2Controller", function (article, $scope, $stateParams) {
         console.log(article)
@@ -128,17 +114,29 @@ var app = angular
         $http(
             {
                 method: 'GET',
-                url: 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',  /*Most populars*/
-                /*  url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                url: 'https://api.nytimes.com/svc/mostpopular/v2/viewed/30.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',  /*Most populars*/
             }).then(function successCallback(result) {
                 console.log('success', result);
                 $scope.results = result.data.results;
-
-            }, function errorCallback(result) {
+            }, function errorCallback() {
                 console.log("there's a fucking error, man...");
             });
 
+        //Filter switch
+        var filterIndicator = 0;
+        $scope.filterSwitch = function () {
 
+            if (filterIndicator == 0) {
+                $scope.filterValue = '!trump'
+                document.getElementById('filter').value = "All News";
+                filterIndicator = 1
+            } else {
+                $scope.filterValue = null
+                document.getElementById('filter').value = "No Trump!";
+                filterIndicator = 0
+            }
+
+        }
 
     })
     .controller('mostRecent', function ($http, $scope) {
@@ -154,20 +152,31 @@ var app = angular
             }, function errorCallback(result) {
                 console.log("there's a fucking error, man...");
             });
-    });
+            //Filter switch
+        var filterIndicator = 0;
+        $scope.filterSwitch = function () {
+
+            if (filterIndicator == 0) {
+                $scope.filterValue = '!trump'
+                document.getElementById('filter').value = "All News";
+                filterIndicator = 1
+            } else {
+                $scope.filterValue = null
+                document.getElementById('filter').value = "No Trump!";
+                filterIndicator = 0
+            }
+
+        }
+    }
 
 
-
-
-
+    );
 
 
 /* Dark mode */
 var darkModeIndicator = 0;
 
 function theme() {
-
-
     if (darkModeIndicator == 0) {
         document.getElementById("darkMode").value = "Night";
         document.querySelector('body').classList.add("nightTheme");
@@ -179,8 +188,6 @@ function theme() {
         document.querySelector(".svg").classList.remove("nightTheme");
         darkModeIndicator = 0;
     }
-
-
 };
 /* Dark mode END*/
 
@@ -192,4 +199,4 @@ function MyCtrl($scope, Slug) {
         $scope.mySlug = Slug.slugify(input);
     };
 }
-
+// slugify END//
