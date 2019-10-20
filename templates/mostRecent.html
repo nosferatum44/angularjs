@@ -1,7 +1,6 @@
-
 <div class="container" ng-controller="mostRecent" ng-cloak>
-        
-    <div class="box" ng-repeat="result in results" ng-if="result.multimedia[2].url != null">
+        <input type="button" id="filter" ng-click="filterSwitch()" value="No Trump!" />
+    <div class="box" ng-repeat="result in results | filter : filterValue" ng-if="result.multimedia[2].url != null">
     <h2>{{result.title}}</h2>
     <p class="abstract">{{result.abstract}}</p>
     <img src="{{result.multimedia[2].url}}">

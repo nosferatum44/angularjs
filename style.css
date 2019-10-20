@@ -1,4 +1,4 @@
-html {}
+
 
 body {
     background-color: #282c2b;
@@ -29,6 +29,20 @@ a {
     right: 20px;
     margin: 20px;
 }
+#filter {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    margin: 20px;
+}
+#search {
+    flex: 0 0 100%;
+    text-align: center;
+    padding-bottom: 20px;
+}
+input {
+    margin-left: 20px;
+}
 .articleBox {
     
     display: block;
@@ -49,7 +63,7 @@ a {
 
 }
 .content {
-    padding: 30px 0;
+    padding-top: 30px;
     text-align: center;
 }
 .links {
@@ -78,6 +92,9 @@ svg {
 }
 .nightTheme svg {
     fill: black;
+}
+.newsWithTrump {
+        display: none;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -109,13 +126,15 @@ svg {
     .abstract {
         padding: 0px 0;
     }
-    #darkMode {
+    
+    #filter, #darkMode {
         display: none;
     }
     .noArticle {
-        padding-top: 75px;
+        padding-top: 150px;
     
     }
+    
 }
 
 

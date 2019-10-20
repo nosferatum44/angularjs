@@ -1,7 +1,7 @@
 <div class="articleBox" ng-cloak>
     <div ng-model="article2Controller"  ng-if="articleText != ''">
         <h2>{{title}}</h2>
-        <p>{{articleText}}</p>
+        <p ng-bind-html="articleText">{{articleText}}</p>
         <img src="{{image}}">
         <p></p>
         <a href="{{externalUrl}}">Read more...</a>
