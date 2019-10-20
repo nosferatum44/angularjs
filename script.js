@@ -1,6 +1,6 @@
 var app = angular
 
-    .module("Demo", ["ui.router", "slugifier", "ngSanitize"])
+    .module("Demo", ["ui.router", "slugifier", "ngSanitize", "ui.bootstrap"])
 
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('');
@@ -76,10 +76,10 @@ var app = angular
                 }
 
             })
-            .state("mostRecent", {
+            .state("articleSearch", {
                 url: "/",
                 templateUrl: "templates/mostRecent.html",
-                controller: "mostRecentController",
+                controller: "articleSearchController",
 
             })
         /* Remove #! from url */
@@ -107,7 +107,7 @@ var app = angular
         $scope.externalUrl = $stateParams.externalUrl
         console.log($scope.articleText)
     })
-    .controller("mostRecentController", function () {
+    .controller("articleSearchController", function () {
 
     })
     .controller('mainCtrl', function ($http, $scope) {
@@ -118,6 +118,23 @@ var app = angular
             }).then(function successCallback(result) {
                 console.log('success', result);
                 $scope.results = result.data.results;
+                console.log($scope.results.length)
+                
+                $scope.filteredResults = []
+                $scope.currentPage = 1
+                    , $scope.numPerPage = 10,
+                    $scope.maxSize = 5;
+
+                    $scope.numPages =  Math.ceil($scope.results.length / $scope.numPerPage);
+                    console.log($scope.numPages)
+                      
+                $scope.$watch('currentPage + numPerPage', function () {
+                    var firstPageNumber = (($scope.currentPage - 1) * $scope.numPerPage)
+                        , lastPageNumber = firstPageNumber + $scope.numPerPage;
+
+                    $scope.filteredResults = $scope.results.slice(firstPageNumber, lastPageNumber);
+                   
+                });
             }, function errorCallback() {
                 console.log("there's a fucking error, man...");
             });
@@ -138,21 +155,23 @@ var app = angular
 
         }
 
+
     })
-    .controller('mostRecent', function ($http, $scope) {
+   
+    .controller('articleSearch', function ($http, $scope) {
         $http(
             {
                 method: 'GET',
 
-                url: 'https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=1&fq=news_desk:("Politics")&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
             }).then(function successCallback(result) {
                 console.log('success', result);
-                $scope.results = result.data.results;
+                $scope.results = result.data.response.docs;
 
             }, function errorCallback(result) {
                 console.log("there's a fucking error, man...");
             });
-            //Filter switch
+        //Filter switch
         var filterIndicator = 0;
         $scope.filterSwitch = function () {
 
@@ -168,6 +187,7 @@ var app = angular
 
         }
     }
+
 
 
     );
