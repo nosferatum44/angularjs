@@ -11,7 +11,7 @@
             </a>
         </div>
         <div class="container">
-            <div class="box" ng-repeat="result in results | filter : '!trump'" ng-if="result.multimedia[2].url != null">
+            <div class="box" ng-repeat="result in results">
                 <h2>{{result.headline.main}}</h2>
                 <p class="abstract">{{result.abstract}}</p>
                 <img src="https://static01.nyt.com/{{result.multimedia[0].url}}">
