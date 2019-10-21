@@ -83,14 +83,32 @@ var app = angular
                 console.log("there's a fucking error, man...");
             });
 
+            
 
+        $scope.mainPage = function () {
+            console.log('Its working')
+            $http(
+                {
+                    method: 'GET',
+                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + 1 + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                }).then(function successCallback(result) {
+                    console.log('success', result);
+                    $scope.results = result.data.response.docs;
+                    var currentPageNumberValue = 1
+                    document.getElementById('currentPageNumber').value = currentPageNumberValue
+                    $scope.pageNumber = 1
 
+                }, function errorCallback(result) {
+                    console.log("there's a fucking error, man...");
+                });
+        }
 
         //Pagination 
-        var currentPageNumberValue = 1
-        
+         
+
         $scope.nextPage = function () {
-            $scope.pageNumber = $scope.pageNumber + 1
+          
+            $scope.pageNumber++
             $http(
                 {
                     method: 'GET',
@@ -102,8 +120,8 @@ var app = angular
                     console.log("there's a fucking error, man...");
                 });
 
-            document.getElementById('currentPageNumber').value = currentPageNumberValue = currentPageNumberValue + 1
-            console.log('Page Number = ' + currentPageNumberValue)
+            document.getElementById('currentPageNumber').value++
+           
 
             var container = document.querySelector(".container");
         var numberOfArticlesOnPage = container.children.length
@@ -128,7 +146,7 @@ var app = angular
 
         $scope.previousPage = function () {
             if ($scope.pageNumber > 1) {
-                $scope.pageNumber = $scope.pageNumber - 1
+                $scope.pageNumber--
                 $http(
                     {
                         method: 'GET',
@@ -139,7 +157,7 @@ var app = angular
                     }, function errorCallback(result) {
                         console.log("there's a fucking error, man...");
                     });
-                document.getElementById('currentPageNumber').value = currentPageNumberValue = currentPageNumberValue - 1
+                document.getElementById('currentPageNumber').value--
             }
         }
 
