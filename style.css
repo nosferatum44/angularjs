@@ -29,18 +29,6 @@ a {
     margin: 20px;
 }
 
-#filter {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    margin: 20px;
-}
-
-#search {
-    text-align: center;
-    padding: 10px 0 20px;
-}
-
 input {
     margin-top: 15px;
     margin-right: 20px;
@@ -105,7 +93,17 @@ ul#menu li {
 svg {
     width: 400px;
 }
-
+/* .pageNavigation svg {
+    width: 25px;
+}
+.pageNavigation input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+#previousPageButton {
+    transform: rotate();
+} */
 .nightTheme svg {
     fill: black;
 }
@@ -114,22 +112,18 @@ svg {
     display: none;
 }
 
-.pagination {
-    text-align: center;
+#pagination {
+    margin-top:50px;
 }
-
-.pagination ul {
-    overflow-x: hidden;
-    white-space: nowrap;
-    height: 1em;
-    width: 100%;
+#pagination input{
+    width: 25px;
 }
-
-.pagination li {
-    margin-right: 5px;
-    display: inline;
+#pagination input[type=button] {
+    background: none;
+    border: none;
+    font-size: 24pt;
+    pointer-events: none;
 }
-
 .logo {
     position: relative;
     display: inline-block;
