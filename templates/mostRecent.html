@@ -1,8 +1,8 @@
 <div ng-controller="articleSearch" ng-cloak>
-    <input type="button" id="filter" ng-click="filterSwitch()" value="No Trump!" />
-    <p id="search">Search: <input ng-model="filterValue"></p>
+    <!-- <input type="button" id="filter" ng-click="filterSwitch()" value="No Trump!" />
+    <p id="search">Search: <input ng-model="filterValue"></p> -->
     <div class="container">
-        <div class="box" ng-repeat="result in results | filter : filterValue" ng-if="result.multimedia[2].url != null">
+        <div class="box" ng-repeat="result in results | filter : '!trump'" ng-if="result.multimedia[2].url != null">
             <h2>{{result.headline.main}}</h2>
             <p class="abstract">{{result.abstract}}</p>
             <img src="https://static01.nyt.com/{{result.multimedia[0].url}}">

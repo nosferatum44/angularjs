@@ -1,26 +1,22 @@
 <div ng-controller="mainCtrl" ng-cloak>
-    <input type="button" id="filter" ng-click="filterSwitch()" value="No Trump!" />
-    <p id="search">Search: <input ng-model="filterValue"></p>
     <div class="container">
-        <div class="box" ng-repeat="result in filteredResults | filter : filterValue">
-            <div>
-                <h2>{{result.title}}</h2>
-                <p class="abstract">{{result.abstract}}</p>
-                <img src="{{result.media[0]['media-metadata'][2].url}}">
-                <p></p>
-                <a ui-sref="article ({
-            articleSlug:'{{result.title | slugify}}', 
-            title: '{{result.title}}',
-            url: '{{result.url}}', 
-            image: '{{result.media[0]['media-metadata'][2].url}}',
-            externalUrl: '{{result.url}}'
-        })">Read more...</a>
-            </div>
+        <div class="box" ng-repeat="result in results | filter : '!trump'" ng-if="result.multimedia[2].url != null">
+            <h2>{{result.headline.main}}</h2>
+            <p class="abstract">{{result.abstract}}</p>
+            <img src="https://static01.nyt.com/{{result.multimedia[0].url}}">
+            <p></p>
+            <a ui-sref="article ({
+        articleSlug:'{{result.headline.main | slugify}}', 
+        title: '{{result.headline.main}}',
+        url: '{{result.web_url}}', 
+        image: 'https://static01.nyt.com/{{result.multimedia[0].url}}',
+        externalUrl: '{{result.url}}'
+    })">Read more...</a>
         </div>
     </div>
-    <div>
-        <pagination ng-model="currentPage" total-items="results.length" max-size="maxSize" boundary-links="true"
-            num-pages="numPages">
-        </pagination>
-    </div>
+    <ul id="pagination">
+            <input type="button" ng-click="previousPage()" value="Previous">
+            <input id="currentPageNumber" type="button" value="1">
+        <input type="button" ng-click="nextPage()" value="Next">
+    </ul>
 </div>

@@ -52,10 +52,13 @@ input {
     margin: 0 auto;
     height: 100%;
 }
+
 img {
     width: 440px;
     height: 290px;
+    object-fit: cover;
 }
+
 .articleBox img {
     width: 60%;
     display: block;
@@ -68,7 +71,7 @@ img {
 }
 
 .content {
-    padding-top: 30px;
+    padding: 30px;
     text-align: center;
 }
 
@@ -125,12 +128,106 @@ svg {
     margin-right: 5px;
     display: inline;
 }
+.logo {
+    position: relative;
+    display: inline-block;
+}
+span {
+    position: absolute;
+    right: 0px;
+    top: 45px;
+}
 
+#pagination {
+    text-align: center;
+}
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
 
-@media only screen and (max-width: 800px) {
+/* Dark Mode Switcher */
+#darkModeLight {
+    position: absolute;
+    top:5px;
+    left: 65px;
+    width: 25px;
+}
+#darkModeMoon {
+    position: absolute;
+    top:5px;
+    right: 65px;
+    width: 25px;
+}
+.nightTheme  #darkModeMoon {
+    fill: #A5A5A4;
+}
+/* The switch - the box around the slider */
+.switch {
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    right: 50px;
+    top: 42px;
+    transform: scale(0.7);
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+@media only screen and (max-width: 480px) {
     .content {
         padding-bottom: 5px;
     }
@@ -138,11 +235,16 @@ svg {
         flex-basis: 100%;
         padding: 10px;
     }
+    .box a {
+        display: block;
+        margin-bottom: 10px;
+    }
     svg {
         width: 300px;
     }
     img {
         width: 100%;
+        height: 235px;
     }
     .articleBox {
         width: 90%;
@@ -164,6 +266,19 @@ svg {
     #search {
         padding-bottom: 10px;
     }
+    span {
+        top: 33px;
+    }
+    .switch {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1200px) {
+    .articleBox {
+        width: auto;
+    }
+    
 }
 
 /* Changing background colors on every other element */
@@ -181,3 +296,5 @@ svg {
 .nav, .pagination, .carousel, .panel-title a {
     cursor: pointer;
 }
+
+
