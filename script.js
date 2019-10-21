@@ -75,7 +75,7 @@ var app = angular
         $http(
             {
                 method: 'GET',
-                url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
             }).then(function successCallback(result) {
                 console.log('success', result);
                 $scope.results = result.data.response.docs;
@@ -89,7 +89,7 @@ var app = angular
             $http(
                 {
                     method: 'GET',
-                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + 1 + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + 1 + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
                 }).then(function successCallback(result) {
                     console.log('success', result);
                     $scope.results = result.data.response.docs;
@@ -111,7 +111,7 @@ var app = angular
             $http(
                 {
                     method: 'GET',
-                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
                 }).then(function successCallback(result) {
                     console.log('success', result);
                     $scope.results = result.data.response.docs;
@@ -120,36 +120,36 @@ var app = angular
                 });
 
             document.getElementById('currentPageNumber').value++
-
-
-            var container = document.querySelector(".container");
-            var numberOfArticlesOnPage = container.children.length
-            console.log(numberOfArticlesOnPage)
-
-            if (numberOfArticlesOnPage < 10) {
-                $scope.pageNumber = $scope.pageNumber + 1
-                var i=1
-                i++
-                $http(
-                    {
-                        method: 'GET',
-                        url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + i + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
-                    }).then(function successCallback(result) {
-                        console.log('success', result);
-                        $scope.results2 = result.data.response.docs;
-                        console.log('success', $scope.results2);
-                        console.log('success2', $scope.results);
-                    }, function errorCallback(result) {
-                        console.log("there's a fucking error, man...");
-                    });
-                    var container = document.querySelector(".container");
-            var numberOfArticlesOnPage = container.children.length
-            console.log('numberOfArticlesOnPage = ' + numberOfArticlesOnPage)
-            console.log('i = ' + i)
             }
-            console.log('Page API = ' + $scope.pageNumber)
 
-        }
+        //     var container = document.querySelector(".container");
+        //     var numberOfArticlesOnPage = container.children.length
+        //     console.log(numberOfArticlesOnPage)
+
+        //     if (numberOfArticlesOnPage < 10) {
+        //         $scope.pageNumber = $scope.pageNumber + 1
+        //         var i=1
+        //         i++
+        //         $http(
+        //             {
+        //                 method: 'GET',
+        //                 url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + i + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+        //             }).then(function successCallback(result) {
+        //                 console.log('success', result);
+        //                 $scope.results2 = result.data.response.docs;
+        //                 console.log('success', $scope.results2);
+        //                 console.log('success2', $scope.results);
+        //             }, function errorCallback(result) {
+        //                 console.log("there's a fucking error, man...");
+        //             });
+        //             var container = document.querySelector(".container");
+        //     var numberOfArticlesOnPage = container.children.length
+        //     console.log('numberOfArticlesOnPage = ' + numberOfArticlesOnPage)
+        //     console.log('i = ' + i)
+        //     }
+        //     console.log('Page API = ' + $scope.pageNumber)
+
+        // }
 
         $scope.previousPage = function () {
             if ($scope.pageNumber > 1) {
@@ -157,7 +157,7 @@ var app = angular
                 $http(
                     {
                         method: 'GET',
-                        url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                        url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
                     }).then(function successCallback(result) {
                         console.log('success', result);
                         $scope.results = result.data.response.docs;
@@ -170,21 +170,6 @@ var app = angular
 
 
 
-        //Filter switch
-        var filterIndicator = 0;
-        $scope.filterSwitch = function () {
-
-            if (filterIndicator == 0) {
-                $scope.filterValue = '!trump'
-                document.getElementById('filter').value = "All News";
-                filterIndicator = 1
-            } else {
-                $scope.filterValue = null
-                document.getElementById('filter').value = "No Trump!";
-                filterIndicator = 0
-            }
-        }
-        //Filter switch END
     }
 
 
