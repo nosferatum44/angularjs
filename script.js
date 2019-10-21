@@ -190,12 +190,10 @@ var darkModeIndicator = 0;
 
 function theme() {
     if (darkModeIndicator == 0) {
-        document.getElementById("darkMode").value = "Night";
         document.querySelector('body').classList.add("nightTheme");
         document.querySelector('.svg').classList.add("nightTheme");
         darkModeIndicator = 1;
     } else {
-        document.getElementById("darkMode").value = "Day";
         document.querySelector("body").classList.remove("nightTheme");
         document.querySelector(".svg").classList.remove("nightTheme");
         darkModeIndicator = 0;
@@ -205,7 +203,6 @@ function theme() {
 
 
 // slugify //
-
 function MyCtrl($scope, Slug) {
     $scope.slugify = function (input) {
         $scope.mySlug = Slug.slugify(input);
