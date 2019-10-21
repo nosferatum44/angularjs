@@ -22,13 +22,6 @@ a {
     padding: 30px;
 }
 
-#darkMode {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    margin: 20px;
-}
-
 input {
     margin-top: 15px;
     margin-right: 20px;
@@ -64,10 +57,6 @@ img {
     text-align: center;
 }
 
-.links {
-    padding: 30px 0;
-}
-
 ul {
     padding-inline-start: 0;
 }
@@ -93,17 +82,8 @@ ul#menu li {
 svg {
     width: 400px;
 }
-/* .pageNavigation svg {
-    width: 25px;
-}
-.pageNavigation input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-#previousPageButton {
-    transform: rotate();
-} */
+
+
 .nightTheme svg {
     fill: black;
 }
@@ -113,17 +93,21 @@ svg {
 }
 
 #pagination {
-    margin-top:50px;
+    margin-top: 50px;
 }
-#pagination input{
+
+#pagination input {
     width: 25px;
+    filter: invert(100%);
 }
+
 #pagination input[type=button] {
     background: none;
     border: none;
     font-size: 24pt;
     pointer-events: none;
 }
+
 .logo {
     position: relative;
     display: inline-block;
@@ -134,10 +118,6 @@ span {
     position: absolute;
     right: 0px;
     top: 45px;
-}
-
-#pagination {
-    text-align: center;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -162,6 +142,10 @@ span {
 
 .nightTheme #darkModeMoon {
     fill: #A5A5A4;
+}
+.nightTheme #pagination input {
+    width: 25px;
+    filter: invert(0%);
 }
 
 /* The switch - the box around the slider */
@@ -224,8 +208,6 @@ input:checked+.slider:before {
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
-
 .slider.round {
     border-radius: 34px;
 }
@@ -233,6 +215,21 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+
+
+/* Changing background colors on every other element */
+
+.box:nth-child(even) {
+    background-color: rgb(50, 53, 53);
+}
+
+.nightTheme .box:nth-child(even) {
+    background-color: rgba(50, 53, 53, 0.08);
+}
+
+
+
 
 @media only screen and (max-width: 480px) {
     .content {
@@ -281,24 +278,13 @@ input:checked+.slider:before {
     }
 }
 
+
+
 @media only screen and (min-width: 481px) and (max-width: 1200px) {
     .articleBox {
         width: auto;
     }
 }
 
-/* Changing background colors on every other element */
 
-.box:nth-child(even) {
-    background-color: rgb(50, 53, 53);
-}
 
-.nightTheme .box:nth-child(even) {
-    background-color: rgba(50, 53, 53, 0.08);
-}
-
-/* Bootstrap */
-
-.nav, .pagination, .carousel, .panel-title a {
-    cursor: pointer;
-}

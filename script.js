@@ -1,6 +1,6 @@
 var app = angular
 
-    .module("Demo", ["ui.router", "slugifier", "ngSanitize", "ui.bootstrap"])
+    .module("Demo", ["ui.router", "slugifier", "ngSanitize"])
 
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('');
@@ -70,7 +70,7 @@ var app = angular
     .controller('mainCtrl', function ($http, $scope) {
         $scope.pageNumber = 1
 
-        
+
 
         $http(
             {
@@ -83,10 +83,9 @@ var app = angular
                 console.log("there's a fucking error, man...");
             });
 
-            
+
 
         $scope.mainPage = function () {
-            console.log('Its working')
             $http(
                 {
                     method: 'GET',
@@ -104,10 +103,10 @@ var app = angular
         }
 
         //Pagination 
-         
+
 
         $scope.nextPage = function () {
-          
+
             $scope.pageNumber++
             $http(
                 {
@@ -121,26 +120,34 @@ var app = angular
                 });
 
             document.getElementById('currentPageNumber').value++
-           
+
 
             var container = document.querySelector(".container");
-        var numberOfArticlesOnPage = container.children.length
-        console.log(numberOfArticlesOnPage)
+            var numberOfArticlesOnPage = container.children.length
+            console.log(numberOfArticlesOnPage)
 
-            // if (numberOfArticlesOnPage < 10) {
-            //     $scope.pageNumber = $scope.pageNumber + 1
-            //     $http(
-            //         {
-            //             method: 'GET',
-            //             url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
-            //         }).then(function successCallback(result) {
-            //             console.log('success', result);
-            //             $scope.results = result.data.response.docs;
-            //         }, function errorCallback(result) {
-            //             console.log("there's a fucking error, man...");
-            //         });
-            // }
-            // console.log('Page API = '+ $scope.pageNumber)
+            if (numberOfArticlesOnPage < 10) {
+                $scope.pageNumber = $scope.pageNumber + 1
+                var i=1
+                i++
+                $http(
+                    {
+                        method: 'GET',
+                        url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + i + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                    }).then(function successCallback(result) {
+                        console.log('success', result);
+                        $scope.results2 = result.data.response.docs;
+                        console.log('success', $scope.results2);
+                        console.log('success2', $scope.results);
+                    }, function errorCallback(result) {
+                        console.log("there's a fucking error, man...");
+                    });
+                    var container = document.querySelector(".container");
+            var numberOfArticlesOnPage = container.children.length
+            console.log('numberOfArticlesOnPage = ' + numberOfArticlesOnPage)
+            console.log('i = ' + i)
+            }
+            console.log('Page API = ' + $scope.pageNumber)
 
         }
 

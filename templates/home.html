@@ -17,6 +17,22 @@
                 <img src="https://static01.nyt.com/{{result.multimedia[0].url}}">
                 <p></p>
                 <a ui-sref="article ({
+                articleSlug:'{{result.headline.main | slugify}}', 
+                title: '{{result.headline.main}}',
+                url: '{{result.web_url}}', 
+                image: 'https://static01.nyt.com/{{result.multimedia[0].url}}',
+                externalUrl: '{{result.url}}'
+                })">Read more...</a>
+            </div>
+        </div>
+
+
+        <!-- <div class="box" ng-repeat="result in results2 | filter : '!trump'" ng-if="result.multimedia[2].url != null">
+                <h2>{{result.headline.main}}</h2>
+                <p class="abstract">{{result.abstract}}</p>
+                <img src="https://static01.nyt.com/{{result.multimedia[0].url}}">
+                <p></p>
+                <a ui-sref="article ({
         articleSlug:'{{result.headline.main | slugify}}', 
         title: '{{result.headline.main}}',
         url: '{{result.web_url}}', 
@@ -24,9 +40,9 @@
         externalUrl: '{{result.url}}'
     })">Read more...</a>
             </div>
-        </div>
+        </div> -->
         <ul id="pagination">
-            <input type="image" src="../img/previous.png"  ng-click="previousPage()" value="Previous">
+            <input type="image" src="../img/previous.png" ng-click="previousPage()" value="Previous">
             <input id="currentPageNumber" type="button" value="1">
             <input type="image" src="../img/next.png" ng-click="nextPage()" value="Next">
 
