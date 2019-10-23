@@ -38,7 +38,9 @@ img {
     height: 100%;
     object-fit: cover;
 }
-
+img:after { 
+    display: none;
+  }
 .articleBox img {
     width: 60%;
     display: block;
