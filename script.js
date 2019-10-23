@@ -80,14 +80,16 @@ var app = angular
                 $scope.results = result.data.response.docs;
                 console.log($scope.results)
 
-                $scope.resultsTwoColumnsA = $scope.results.slice(0, 4)
-                $scope.resultsTwoColumnsB = $scope.results.slice(5, 9)
+                $scope.divideInColumns = function (){$scope.resultsTwoColumnsA = $scope.results.slice(0, 5)
+                $scope.resultsTwoColumnsB = $scope.results.slice(5)
 
-                $scope.resultsThreeColumnsA = $scope.results.slice(0, 2)
-                $scope.resultsThreeColumnsB = $scope.results.slice(3, 6)
-                $scope.resultsThreeColumnsC = $scope.results.slice(7, 9)
-
-
+                $scope.resultsThreeColumnsA = $scope.results.slice(0, 3)
+                $scope.resultsThreeColumnsB = $scope.results.slice(3, 7)
+                $scope.resultsThreeColumnsC = $scope.results.slice(7)
+           
+                window.scrollTo({ top: 0 })
+                }
+                $scope.divideInColumns ()
 
             }, function errorCallback(result) {
                 console.log("there's a fucking error, man...");
@@ -106,12 +108,6 @@ var app = angular
                     console.log('success2', result);
                     $scope.results = result.data.response.docs;
 
-                    $scope.resultsTwoColumnsA = $scope.results.slice(0, 4)
-                    $scope.resultsTwoColumnsB = $scope.results.slice(5, 9)
-
-                    $scope.resultsThreeColumnsA = $scope.results.slice(0, 2)
-                    $scope.resultsThreeColumnsB = $scope.results.slice(3, 6)
-                    $scope.resultsThreeColumnsC = $scope.results.slice(7, 9)
 
                     var currentPageNumberValue = 1
                     document.getElementById('currentPageNumber').value = currentPageNumberValue
@@ -138,14 +134,8 @@ var app = angular
                     console.log('success', result);
                     $scope.results = result.data.response.docs;
 
-                    $scope.resultsTwoColumnsA = $scope.results.slice(0, 4)
-                    $scope.resultsTwoColumnsB = $scope.results.slice(5, 9)
-
-                    $scope.resultsThreeColumnsA = $scope.results.slice(0, 2)
-                    $scope.resultsThreeColumnsB = $scope.results.slice(3, 6)
-                    $scope.resultsThreeColumnsC = $scope.results.slice(7, 9)
-
-                    window.scrollTo({ top: 0 })
+                    $scope.divideInColumns()
+                    
                     document.querySelector('#previousPageNumber').value++
                     document.getElementById('currentPageNumber').value++
                     document.getElementById('nextPageNumber').value++
@@ -156,9 +146,6 @@ var app = angular
                     console.log("there's a fucking error, man...");
                 });
         }
-
-
-
 
 
 
@@ -173,10 +160,8 @@ var app = angular
                         console.log('success', result);
                         $scope.results = result.data.response.docs;
 
-                        $scope.resultsThreeColumnsA = $scope.results.slice(0, 2)
-                        $scope.resultsThreeColumnsB = $scope.results.slice(3, 6)
-                        $scope.resultsThreeColumnsC = $scope.results.slice(7, 9)
-
+                        $scope.divideInColumns()
+                 
                         document.getElementById('currentPageNumber').value--
                         document.querySelector('#previousPageNumber').value--
                         document.getElementById('nextPageNumber').value--

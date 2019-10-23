@@ -67,7 +67,7 @@
                     <div class="box" ng-repeat="result in resultsThreeColumnsB">
                         <h2>{{result.headline.main}}</h2>
                         <p class="abstract">{{result.abstract}}</p>
-                        <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" title="">
+                        <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" title="" alt="">
                         <p></p>
                         <a
                             ui-sref="article ({articleSlug:'{{result.headline.main | slugify}}', title: '{{result.headline.main}}', url: '{{result.web_url}}', image: 'https://static01.nyt.com/{{result.multimedia[0].url}}', externalUrl: '{{result.web_url}}'})">Read
