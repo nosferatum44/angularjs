@@ -284,6 +284,11 @@ input:checked+.slider:before {
     span {
         top: 33px;
     }
+    #pagination input {
+        width: 25px;
+        margin: auto 5px;
+        filter: invert(100%);
+    }
     .switch {
         display: none;
     }
