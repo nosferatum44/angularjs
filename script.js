@@ -32,7 +32,6 @@ var app = angular
                                 url: 'https://resoomer.pro/websummarizer/',
                                 data: formData,
                                 headers: { 'Content-Type': undefined },
-
                             }
                         )
                     },
@@ -43,7 +42,6 @@ var app = angular
                     title: '',
                     externalUrl: ''
                 }
-
             })
 
 
@@ -76,27 +74,50 @@ var app = angular
         $http(
             {
                 method: 'GET',
-                url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', 
+                url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',
             }).then(function successCallback(result) {
                 console.log('success1', result);
                 $scope.results = result.data.response.docs;
+                console.log($scope.results)
+
+                $scope.resultsTwoColumnsA = $scope.results.slice(0, 4)
+                $scope.resultsTwoColumnsB = $scope.results.slice(5, 9)
+
+                $scope.resultsThreeColumnsA = $scope.results.slice(0, 2)
+                $scope.resultsThreeColumnsB = $scope.results.slice(3, 6)
+                $scope.resultsThreeColumnsC = $scope.results.slice(7, 9)
+
+
+
             }, function errorCallback(result) {
                 console.log("there's a fucking error, man...");
             });
 
-            
+
 
         $scope.mainPage = function () {
-            document.querySelector('#previousPage').style.display = "none"
+
+
             $http(
                 {
                     method: 'GET',
-                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + 1 + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', 
+                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + 1 + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',
                 }).then(function successCallback(result) {
                     console.log('success2', result);
                     $scope.results = result.data.response.docs;
+
+                    $scope.resultsTwoColumnsA = $scope.results.slice(0, 4)
+                    $scope.resultsTwoColumnsB = $scope.results.slice(5, 9)
+
+                    $scope.resultsThreeColumnsA = $scope.results.slice(0, 2)
+                    $scope.resultsThreeColumnsB = $scope.results.slice(3, 6)
+                    $scope.resultsThreeColumnsC = $scope.results.slice(7, 9)
+
                     var currentPageNumberValue = 1
                     document.getElementById('currentPageNumber').value = currentPageNumberValue
+                    document.querySelector('#previousPage').style.display = "none"
+                    document.querySelector('#previousPageNumber').value = ""
+                    document.getElementById('nextPageNumber').value = "2"
                     $scope.pageNumber = 1
                 }, function errorCallback(result) {
                     console.log("there's a fucking error, man...");
@@ -109,7 +130,6 @@ var app = angular
         $scope.nextPage = function () {
 
             $scope.pageNumber++
-            document.querySelector('#previousPage').style.display = "inline"
             $http(
                 {
                     method: 'GET',
@@ -117,42 +137,30 @@ var app = angular
                 }).then(function successCallback(result) {
                     console.log('success', result);
                     $scope.results = result.data.response.docs;
+
+                    $scope.resultsTwoColumnsA = $scope.results.slice(0, 4)
+                    $scope.resultsTwoColumnsB = $scope.results.slice(5, 9)
+
+                    $scope.resultsThreeColumnsA = $scope.results.slice(0, 2)
+                    $scope.resultsThreeColumnsB = $scope.results.slice(3, 6)
+                    $scope.resultsThreeColumnsC = $scope.results.slice(7, 9)
+
                     window.scrollTo({ top: 0 })
+                    document.querySelector('#previousPageNumber').value++
+                    document.getElementById('currentPageNumber').value++
+                    document.getElementById('nextPageNumber').value++
+                    document.querySelector('#previousPageNumber').style.display = "block"
+                    document.querySelector('#previousPage').style.display = "inline"
+
                 }, function errorCallback(result) {
                     console.log("there's a fucking error, man...");
                 });
+        }
 
-            document.getElementById('currentPageNumber').value++
-            }
 
-        //     var container = document.querySelector(".container");
-        //     var numberOfArticlesOnPage = container.children.length
-        //     console.log(numberOfArticlesOnPage)
 
-        //     if (numberOfArticlesOnPage < 10) {
-        //         $scope.pageNumber = $scope.pageNumber + 1
-        //         var i=1
-        //         i++
-        //         $http(
-        //             {
-        //                 method: 'GET',
-        //                 url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&page=' + i + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
-        //             }).then(function successCallback(result) {
-        //                 console.log('success', result);
-        //                 $scope.results2 = result.data.response.docs;
-        //                 console.log('success', $scope.results2);
-        //                 console.log('success2', $scope.results);
-        //             }, function errorCallback(result) {
-        //                 console.log("there's a fucking error, man...");
-        //             });
-        //             var container = document.querySelector(".container");
-        //     var numberOfArticlesOnPage = container.children.length
-        //     console.log('numberOfArticlesOnPage = ' + numberOfArticlesOnPage)
-        //     console.log('i = ' + i)
-        //     }
-        //     console.log('Page API = ' + $scope.pageNumber)
 
-        // }
+
 
         $scope.previousPage = function () {
             if ($scope.pageNumber > 1) {
@@ -164,19 +172,29 @@ var app = angular
                     }).then(function successCallback(result) {
                         console.log('success', result);
                         $scope.results = result.data.response.docs;
+
+                        $scope.resultsThreeColumnsA = $scope.results.slice(0, 2)
+                        $scope.resultsThreeColumnsB = $scope.results.slice(3, 6)
+                        $scope.resultsThreeColumnsC = $scope.results.slice(7, 9)
+
+                        document.getElementById('currentPageNumber').value--
+                        document.querySelector('#previousPageNumber').value--
+                        document.getElementById('nextPageNumber').value--
                         if (document.querySelector('#currentPageNumber').value == 1) {
                             document.querySelector('#previousPage').style.display = "none"
+                            document.querySelector('#previousPageNumber').style.display = "none"
                         }
+
+                        window.scrollTo({ top: 0 })
+
                     }, function errorCallback(result) {
                         console.log("there's a fucking error, man...");
                     });
-                document.getElementById('currentPageNumber').value--
-                } else document.querySelector('#previousPage').style.display = "none"
+
+            }
         }
-
-
-
     }
+
 
 
 
@@ -209,4 +227,3 @@ function MyCtrl($scope, Slug) {
 // slugify END//
 
 
-    
