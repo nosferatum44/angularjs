@@ -41,11 +41,7 @@ img {
 img:after { 
     display: none;
   }
-.articleBox img {
-    width: 60%;
-    display: block;
-    margin: 0 auto;
-}
+img:not([src]){ display:none; }
 
 .noArticle {
     text-align: center;
