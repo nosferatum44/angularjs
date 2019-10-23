@@ -18,7 +18,7 @@ a {
 }
 
 .box {
-    flex-basis: 200px;
+    flex-basis: 28%;
     padding: 30px;
     text-align: left;
 }
@@ -109,7 +109,9 @@ svg {
     font-size: 24pt;
     pointer-events: none;
 }
-
+#currentPageNumber {
+    width: auto;
+}
 .logo {
     position: relative;
     display: inline-block;
@@ -284,6 +286,9 @@ input:checked+.slider:before {
 
 
 @media only screen and (min-width: 481px) and (max-width: 1200px) {
+    .box {
+        flex-basis: 75%;
+    }
     .articleBox {
         width: auto;
     }

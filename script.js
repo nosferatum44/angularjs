@@ -58,6 +58,7 @@ var app = angular
 
     })
     .controller("articleController", function (article, $scope, $stateParams) {
+        window.scrollTo({ top: 0 })
         console.log(article)
         $scope.articleText = article.data.mediumText.content
         $scope.image = $stateParams.image
@@ -75,28 +76,28 @@ var app = angular
         $http(
             {
                 method: 'GET',
-                url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', 
             }).then(function successCallback(result) {
-                console.log('success', result);
+                console.log('success1', result);
                 $scope.results = result.data.response.docs;
             }, function errorCallback(result) {
                 console.log("there's a fucking error, man...");
             });
 
-
+            
 
         $scope.mainPage = function () {
+            document.querySelector('#previousPage').style.display = "none"
             $http(
                 {
                     method: 'GET',
-                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + 1 + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + 1 + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', 
                 }).then(function successCallback(result) {
-                    console.log('success', result);
+                    console.log('success2', result);
                     $scope.results = result.data.response.docs;
                     var currentPageNumberValue = 1
                     document.getElementById('currentPageNumber').value = currentPageNumberValue
                     $scope.pageNumber = 1
-
                 }, function errorCallback(result) {
                     console.log("there's a fucking error, man...");
                 });
@@ -108,13 +109,15 @@ var app = angular
         $scope.nextPage = function () {
 
             $scope.pageNumber++
+            document.querySelector('#previousPage').style.display = "inline"
             $http(
                 {
                     method: 'GET',
-                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
+                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',
                 }).then(function successCallback(result) {
                     console.log('success', result);
                     $scope.results = result.data.response.docs;
+                    window.scrollTo({ top: 0 })
                 }, function errorCallback(result) {
                     console.log("there's a fucking error, man...");
                 });
@@ -161,11 +164,14 @@ var app = angular
                     }).then(function successCallback(result) {
                         console.log('success', result);
                         $scope.results = result.data.response.docs;
+                        if (document.querySelector('#currentPageNumber').value == 1) {
+                            document.querySelector('#previousPage').style.display = "none"
+                        }
                     }, function errorCallback(result) {
                         console.log("there's a fucking error, man...");
                     });
                 document.getElementById('currentPageNumber').value--
-            }
+                } else document.querySelector('#previousPage').style.display = "none"
         }
 
 
@@ -202,3 +208,5 @@ function MyCtrl($scope, Slug) {
 }
 // slugify END//
 
+
+    

@@ -16,11 +16,11 @@
     <div ng-if="articleText != ''">
         <h2>{{title}}</h2>
         <p ng-bind-html="articleText">{{articleText}}</p>
-        <img src="{{image}}">
+        <img src="{{image}}" alt="">
         <p></p>
         <a href="{{externalUrl}}">Read more...</a>
     </div>
-    <!-- <div class="noArticle" ng-if="articleText == ''">
+    <div class="noArticle" ng-if="articleText == ''">
         <h2>There's no article yet. We're sorry :(</h2>
-    </div> -->
+    </div>
 </div>
