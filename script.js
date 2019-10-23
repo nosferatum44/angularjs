@@ -108,6 +108,7 @@ var app = angular
                     console.log('success2', result);
                     $scope.results = result.data.response.docs;
 
+                    console.log('done!')
 
                     var currentPageNumberValue = 1
                     document.getElementById('currentPageNumber').value = currentPageNumberValue
