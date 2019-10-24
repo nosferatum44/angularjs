@@ -67,7 +67,7 @@ var app = angular
 
 
     .controller('mainCtrl', function ($http, $scope) {
-        $scope.pageNumber = 1
+        $scope.pageNumber = 9
 
 
 
@@ -99,32 +99,16 @@ var app = angular
 
         $scope.mainPage = function () {
 
+              window.location.reload()
 
-            $http(
-                {
-                    method: 'GET',
-                    url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + 1 + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',
-                }).then(function successCallback(result) {
-                    console.log('success2', result);
-                    $scope.results = result.data.response.docs;
-
-                    console.log('done!')
-
-                    var currentPageNumberValue = 1
-                    document.getElementById('currentPageNumber').value = currentPageNumberValue
-                    document.querySelector('#previousPage').style.display = "none"
-                    document.querySelector('#previousPageNumber').value = ""
-                    document.getElementById('nextPageNumber').value = "2"
-                    $scope.pageNumber = 1
-                }, function errorCallback(result) {
-                    console.log("there's a fucking error, man...");
-                });
         }
 
         //Pagination 
 
 
         $scope.nextPage = function () {
+
+          
 
             $scope.pageNumber++
             $http(
@@ -151,7 +135,7 @@ var app = angular
 
 
         $scope.previousPage = function () {
-            if ($scope.pageNumber > 1) {
+            if ($scope.pageNumber > 9) {
                 $scope.pageNumber--
                 $http(
                     {

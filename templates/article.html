@@ -5,7 +5,7 @@
         <p ng-bind-html="articleText">{{articleText}}</p>
         <img src="{{image}}" ng-if="image != 'https://static01.nyt.com/'">
         <p></p>
-        <a href="{{externalUrl}}">Read more...</a>
+        <a href="{{externalUrl}}">Read the full article</a>
     </div>
     <div class="noArticle" ng-if="articleText == ''">
         <h2>There's no article yet. We're sorry :(</h2>
