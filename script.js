@@ -37,13 +37,12 @@ var app = angular
 						).then(function (result) {
 							window.setTimeout(function () {
 								$('.grid').isotope({
-									itemSelector: '.box',
+									itemSelector: '.grid-item',
 									horizontalOrder: true,
 									masonry: {
-										columnWidth: 50
 									}
 								});
-							}, 100)
+							}, 300)
 							return result
 						})
 					}
@@ -98,101 +97,6 @@ var app = angular
 		$scope.externalUrl = $stateParams.externalUrl
 	})
 
-	.controller('mainCtrl', function ($http, $scope) {
-
-
-
-
-		$scope.mainPage = function () {
-
-			window.location.reload()
-
-		}
-
-		//Pagination 
-
-
-		$scope.nextPage = function () {
-
-
-
-			$scope.pageNumber++
-			$http(
-				{
-					method: 'GET',
-					url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',
-				}).then(function successCallback(result) {
-					console.log('success', result);
-					$scope.results = result.data.response.docs;
-
-					window.setTimeout(function () {
-						$('.grid').isotope({
-							itemSelector: '.box',
-							horizontalOrder: true,
-							masonry: {
-								columnWidth: 50
-							}
-						});
-					}, 1000)
-
-					window.scrollTo({ top: 0 })
-					document.querySelector('#previousPageNumber').value++
-					document.getElementById('currentPageNumber').value++
-					document.getElementById('nextPageNumber').value++
-					document.querySelector('#previousPageNumber').style.display = "block"
-					document.querySelector('#previousPage').style.display = "inline"
-
-				}, function errorCallback(result) {
-					console.log("there's a fucking error, man...");
-				});
-		}
-
-
-
-		$scope.previousPage = function () {
-			if ($scope.pageNumber > 9) {
-				$scope.pageNumber--
-				$http(
-					{
-						method: 'GET',
-						url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez', /* Most recent */
-					}).then(function successCallback(result) {
-						console.log('success', result);
-						$scope.results = result.data.response.docs;
-
-						window.setTimeout(function () {
-							$('.grid').isotope({
-								itemSelector: '.box',
-								horizontalOrder: true,
-								masonry: {
-									columnWidth: 50
-								}
-							});
-						}, 1000)
-
-						window.scrollTo({ top: 0 })
-						document.getElementById('currentPageNumber').value--
-						document.querySelector('#previousPageNumber').value--
-						document.getElementById('nextPageNumber').value--
-						if (document.querySelector('#currentPageNumber').value == 1) {
-							document.querySelector('#previousPage').style.display = "none"
-							document.querySelector('#previousPageNumber').style.display = "none"
-						}
-
-						window.scrollTo({ top: 0 })
-
-					}, function errorCallback(result) {
-						console.log("there's a fucking error, man...");
-					});
-
-			}
-		}
-	}
-
-
-
-
-	);
 
 
 /* Dark mode */

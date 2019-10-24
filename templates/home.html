@@ -1,31 +1,30 @@
-<div ng-controller="mainCtrl" ng-cloak>
-    <div class="content">
+<div class="content">
 
-        <div class="grid">
-            <div class="box" ng-repeat="result in articles">
-                <h2>{{result.headline.main}}</h2>
-                <p class="abstract">{{result.abstract}}</p>
-                <img src="https://static01.nyt.com/{{result.multimedia[0].url}}">
-                <p></p>
-                <a ui-sref="app.article({ 
+    <div class="grid">
+        <div class="grid-item" ng-repeat="result in articles">
+            <h2>{{result.headline.main}}</h2>
+            <p class="abstract">{{result.abstract}}</p>
+            <img src="https://static01.nyt.com/{{result.multimedia[0].url}}">
+            <p></p>
+            <a ui-sref="app.article({ 
                             articleSlug:'{{sanitize(result.headline.main | slugify)}}', 
                             title: '{{sanitize(result.headline.main)}}', 
                             url: '{{result.web_url}}', 
                             image: 'https://static01.nyt.com/{{result.multimedia[0].url}}', 
                             externalUrl: '{{result.web_url}}' 
                         })">
-                    Read more...
-                </a>
-            </div>
-
-            <div ng-controller="homeCtrl">
-                <ul id="pagination" >
-                    <div><a ng-if="currentPage > 1" ui-sref="/?page={{previousPage}}">{{previousPage}}</a> </div>
-                    <div>{{currentPage}}</div>
-                    <div><a ui-sref="/?page={{nextPage}}">{{nextPage}}</a></div>
-                </ul>
-            </div>
+                Read more...
+            </a>
         </div>
-
+        
+    </div>
+    <div>
+        <div id="pagination">
+            <div ng-if="currentPage > 1"><a href="/?page={{previousPage}}"><input type="image" src="../img/previous.png"></a></div>
+            <div ng-if="currentPage > 1"><a href="/?page={{previousPage}}">{{previousPage}}</a> </div>
+            <div id="currentPage">{{currentPage}}</div>
+            <div><a href="/?page={{nextPage}}">{{nextPage}}</a></div>
+            <div><a href="/?page={{nextPage}}"><input type="image" src="../img/next.png"></a></div>
+        </div>
     </div>
 </div>
