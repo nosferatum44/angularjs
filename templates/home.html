@@ -2,7 +2,7 @@
     <div class="content">
         
         <div class="grid"> 
-            <div class="box" ng-repeat="result in articles"> 
+            <div class="box" ng-repeat="result in results"> 
                     <h2>{{result.headline.main}}</h2> 
                     <p class="abstract">{{result.abstract}}</p> 
                     <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" > 
@@ -16,15 +16,13 @@
 
           
         <ul id="pagination">
-                <a ng-if="stateParams.page > 1" href="/?page={{stateParams.page - 1}}">{{stateParams.page - 1}}</a> 
-                <a href="{{stateParams.page}}">{{stateParams.page}}</a> 
-                <a href="/?page={{stateParams.page + 1}}">{{stateParams.page + 1}}</a>
-            <!-- <input id="previousPage" type="image" src="../img/previous.png" ng-click="previousPage()"
+            
+            <input id="previousPage" type="image" src="../img/previous.png" ng-click="previousPage()"
                 style="display:none">
             <input id="previousPageNumber" type="button" value="" ng-click="previousPage()">
             <input id="currentPageNumber" type="button" value="1">
             <input id="nextPageNumber" type="button" value="2" ng-click="nextPage()"> 
-            <input type="image" src="../img/next.png" ng-click="nextPage()" value="Next"> -->
+            <input type="image" src="../img/next.png" ng-click="nextPage()" value="Next">
 
         </ul>
     </div>
