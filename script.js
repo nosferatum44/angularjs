@@ -7,11 +7,24 @@ var app = angular
 
         $stateProvider
             .state("home", {
-                url: "/",
+                url: "/:page",
                 templateUrl: "templates/home.html",
                 controller: "homeController",
-
-
+                resolve: {
+                    articles: function ($stateParams, $http, $routeParams) {
+                        console.log('routeParams' + $routeParams)
+                        return $http(
+                            {
+                                method: 'GET',
+                                url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + '{{$stateParams.page || 1}}' + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',
+                            })
+                            
+                    }
+                },
+                params: {
+                    page: '1'
+                }
+               
             })
 
             .state('article', {
@@ -53,7 +66,8 @@ var app = angular
 
     }])
     .controller("homeController", function () {
-
+        $articles = articles.data.response.docs
+        console.log($articles)
     })
     .controller("articleController", function (article, $scope, $stateParams) {
         window.scrollTo({ top: 0 })
@@ -71,35 +85,46 @@ var app = angular
 
 
 
-        $http(
-            {
-                method: 'GET',
-                url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',
-            }).then(function successCallback(result) {
-                console.log('success1', result);
-                $scope.results = result.data.response.docs;
-                console.log($scope.results)
+        // $http(
+        //     {
+        //         method: 'GET',
+        //         url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',
+        //     }).then(function successCallback(result) {
+        //         console.log('success1', result);
+        //         $scope.results = result.data.response.docs;
+        //         console.log($scope.results)
 
-                $scope.divideInColumns = function (){$scope.resultsTwoColumnsA = $scope.results.slice(0, 5)
-                $scope.resultsTwoColumnsB = $scope.results.slice(5)
+        //         window.setTimeout(function () {
+        //             $('.grid').isotope({
+        //                 itemSelector: '.box',
+        //                 horizontalOrder: true,
+        //                 masonry: {
+        //                     columnWidth: 50
+        //                 }
+        //             });
+        //         }, 1000)
 
-                $scope.resultsThreeColumnsA = $scope.results.slice(0, 3)
-                $scope.resultsThreeColumnsB = $scope.results.slice(3, 7)
-                $scope.resultsThreeColumnsC = $scope.results.slice(7)
-           
-                window.scrollTo({ top: 0 })
-                }
-                $scope.divideInColumns ()
+        //         $scope.divideInColumns = function () {
+        //         $scope.resultsTwoColumnsA = $scope.results.slice(0, 5)
+        //             $scope.resultsTwoColumnsB = $scope.results.slice(5)
 
-            }, function errorCallback(result) {
-                console.log("there's a fucking error, man...");
-            });
+        //             $scope.resultsThreeColumnsA = $scope.results.slice(0, 3)
+        //             $scope.resultsThreeColumnsB = $scope.results.slice(3, 7)
+        //             $scope.resultsThreeColumnsC = $scope.results.slice(7)
+
+        //             window.scrollTo({ top: 0 })
+        //         }
+        //         $scope.divideInColumns()
+
+        //     }, function errorCallback(result) {
+        //         console.log("there's a fucking error, man...");
+        //     });
 
 
 
         $scope.mainPage = function () {
 
-              window.location.reload()
+            window.location.reload()
 
         }
 
@@ -108,7 +133,7 @@ var app = angular
 
         $scope.nextPage = function () {
 
-          
+
 
             $scope.pageNumber++
             $http(
@@ -119,8 +144,18 @@ var app = angular
                     console.log('success', result);
                     $scope.results = result.data.response.docs;
 
+                    window.setTimeout(function () {
+                        $('.grid').isotope({
+                            itemSelector: '.box',
+                            horizontalOrder: true,
+                            masonry: {
+                                columnWidth: 50
+                            }
+                        });
+                    }, 1000)
+
                     $scope.divideInColumns()
-                    
+
                     document.querySelector('#previousPageNumber').value++
                     document.getElementById('currentPageNumber').value++
                     document.getElementById('nextPageNumber').value++
@@ -145,8 +180,18 @@ var app = angular
                         console.log('success', result);
                         $scope.results = result.data.response.docs;
 
+                        window.setTimeout(function () {
+                            $('.grid').isotope({
+                                itemSelector: '.box',
+                                horizontalOrder: true,
+                                masonry: {
+                                    columnWidth: 50
+                                }
+                            });
+                        }, 1000)
+
                         $scope.divideInColumns()
-                 
+
                         document.getElementById('currentPageNumber').value--
                         document.querySelector('#previousPageNumber').value--
                         document.getElementById('nextPageNumber').value--

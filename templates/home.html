@@ -1,92 +1,31 @@
 <div ng-controller="mainCtrl" ng-cloak>
     <div class="content">
         
-        <div class="grid">
-
-            <div class="mobile">
-                <div class="container">
-                    <div class="box" ng-repeat="result in results">
-                        <h2>{{result.headline.main}}</h2>
-                        <p class="abstract">{{result.abstract}}</p>
-                        <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" >
-                        <p></p>
-                        <a
-                            ui-sref="article ({articleSlug:'{{result.headline.main | slugify}}', title: '{{result.headline.main}}', url: '{{result.web_url}}', image: 'https://static01.nyt.com/{{result.multimedia[0].url}}', externalUrl: '{{result.web_url}}'})">Read
-                            more...</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tablet">
-                <div class="container">
-                    <div class="box" ng-repeat="result in resultsTwoColumnsA">
-                        <h2>{{result.headline.main}}</h2>
-                        <p class="abstract">{{result.abstract}}</p>
-                        <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" >
-                        <p></p>
-                        <a
-                            ui-sref="article ({articleSlug:'{{result.headline.main | slugify}}', title: '{{result.headline.main}}', url: '{{result.web_url}}', image: 'https://static01.nyt.com/{{result.multimedia[0].url}}', externalUrl: '{{result.web_url}}'})">Read
-                            more...</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="box" ng-repeat="result in resultsTwoColumnsB">
-                        <h2>{{result.headline.main}}</h2>
-                        <p class="abstract">{{result.abstract}}</p>
-                        <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" >
-                        <p></p>
-                        <a
-                            ui-sref="article ({articleSlug:'{{result.headline.main | slugify}}', title: '{{result.headline.main}}', url: '{{result.web_url}}', image: 'https://static01.nyt.com/{{result.multimedia[0].url}}', externalUrl: '{{result.web_url}}'})">Read
-                            more...</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="desktop">
-                <div class="container">
-                    <div class="box" ng-repeat="result in resultsThreeColumnsA">
-                        <h2>{{result.headline.main}}</h2>
-                        <p class="abstract">{{result.abstract}}</p>
-                        <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" >
-                        <p></p>
-                        <a
-                            ui-sref="article ({articleSlug:'{{result.headline.main | slugify}}', title: '{{result.headline.main}}', url: '{{result.web_url}}', image: 'https://static01.nyt.com/{{result.multimedia[0].url}}', externalUrl: '{{result.web_url}}'})">Read
-                            more...</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="box" ng-repeat="result in resultsThreeColumnsB">
-                        <h2>{{result.headline.main}}</h2>
-                        <p class="abstract">{{result.abstract}}</p>
-                        <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" >
-                        <p></p>
-                        <a
-                            ui-sref="article ({articleSlug:'{{result.headline.main | slugify}}', title: '{{result.headline.main}}', url: '{{result.web_url}}', image: 'https://static01.nyt.com/{{result.multimedia[0].url}}', externalUrl: '{{result.web_url}}'})">Read
-                            more...</a>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="box" ng-repeat="result in resultsThreeColumnsC">
-                        <h2>{{result.headline.main}}</h2>
-                        <p class="abstract">{{result.abstract}}</p>
-                        <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" >
-                        <p></p>
-                        <a
-                            ui-sref="article ({articleSlug:'{{result.headline.main | slugify}}', title: '{{result.headline.main}}', url: '{{result.web_url}}', image: 'https://static01.nyt.com/{{result.multimedia[0].url}}', externalUrl: '{{result.web_url}}'})">Read
-                            more...</a>
-                    </div>
-                </div>
-            </div>
+        <div class="grid"> 
+            <div class="box" ng-repeat="result in articles"> 
+                    <h2>{{result.headline.main}}</h2> 
+                    <p class="abstract">{{result.abstract}}</p> 
+                    <img src="https://static01.nyt.com/{{result.multimedia[0].url}}" > 
+                    <p></p> 
+                    <a ui-sref="article ({articleSlug:'{{result.headline.main | slugify}}', title: '{{result.headline.main}}', url: '{{result.web_url}}', image: 'https://static01.nyt.com/{{result.multimedia[0].url}}', externalUrl: '{{result.web_url}}'})"> 
+                        Read more... 
+                    </a> 
+            </div> 
+        </div>
 
 
           
         <ul id="pagination">
-            <input id="previousPage" type="image" src="../img/previous.png" ng-click="previousPage()"
+                <a ng-if="stateParams.page > 1" href="/?page={{stateParams.page - 1}}">{{stateParams.page - 1}}</a> 
+                <a href="{{stateParams.page}}">{{stateParams.page}}</a> 
+                <a href="/?page={{stateParams.page + 1}}">{{stateParams.page + 1}}</a>
+            <!-- <input id="previousPage" type="image" src="../img/previous.png" ng-click="previousPage()"
                 style="display:none">
             <input id="previousPageNumber" type="button" value="" ng-click="previousPage()">
             <input id="currentPageNumber" type="button" value="1">
             <input id="nextPageNumber" type="button" value="2" ng-click="nextPage()"> 
-            <input type="image" src="../img/next.png" ng-click="nextPage()" value="Next">
+            <input type="image" src="../img/next.png" ng-click="nextPage()" value="Next"> -->
 
         </ul>
+    </div>
     </div>
