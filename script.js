@@ -23,7 +23,7 @@ var app = angular
 			.state('app.home', {
 				url: "/",
 				templateUrl: "templates/home.html",
-				controller: "homeController",
+				controller: "homeCtrl",
 				resolve: {
 					articles: function ($stateParams, $http) {
 						console.log($stateParams)
@@ -80,9 +80,13 @@ var app = angular
 			})
 	}])
 
-	.controller("homeController", function (articles, $scope, $sanitize) {
+	.controller("homeCtrl", function (articles, $scope, $stateParams, $sanitize) {
 		$scope.articles = articles.data.response.docs
-		console.log(articles)
+		$scope.currentPage = $stateParams.page || 1
+		$scope.previousPage = parseInt($scope.currentPage) - 1
+		$scope.nextPage = parseInt($scope.currentPage) + 1
+		console.log($scope.nextPage)
+		console.log($scope.previousPage)
 	})
 
 	.controller("articleController", function (article, $scope, $stateParams) {
@@ -95,34 +99,7 @@ var app = angular
 	})
 
 	.controller('mainCtrl', function ($http, $scope) {
-		$scope.pageNumber = 9
 
-
-
-		// $http(
-		//     {
-		//         method: 'GET',
-		//         url: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=news_desk:("Politics")&fq=!trump&page=' + $scope.pageNumber + '&api-key=groQeNemKAhk7QjDWircgauo5jYVcwez',
-		//     }).then(function successCallback(result) {
-		//         console.log('success1', result);
-		//         $scope.results = result.data.response.docs;
-		//         console.log($scope.results)
-
-		//         window.setTimeout(function () {
-		//             $('.grid').isotope({
-		//                 itemSelector: '.box',
-		//                 horizontalOrder: true,
-		//                 masonry: {
-		//                     columnWidth: 50
-		//                 }
-		//             });
-		//         }, 1000)
-
-
-
-		//     }, function errorCallback(result) {
-		//         console.log("there's a fucking error, man...");
-		//     });
 
 
 
