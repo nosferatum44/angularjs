@@ -40,9 +40,11 @@ var app = angular
 									itemSelector: '.grid-item',
 									horizontalOrder: true,
 									masonry: {
+										isFitWidth: true
+
 									}
 								});
-							}, 300)
+							}, 200)
 							return result
 						})
 					}
