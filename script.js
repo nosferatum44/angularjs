@@ -26,7 +26,8 @@ var app = angular
 				controller: "homeCtrl",
 				resolve: {
 					articles: function ($stateParams, $http) {
-						console.log($stateParams)
+						
+
 						return $http(
 							{
 								method: 'GET',
@@ -41,11 +42,15 @@ var app = angular
 									horizontalOrder: true,
 									masonry: {
 										isFitWidth: true
-
+										
 									}
 								});
 							}, 200)
+
 							return result
+						}, function errorCallback(result) {
+							console.log("Too many requests");
+			
 						})
 					}
 				}
@@ -88,6 +93,8 @@ var app = angular
 		$scope.nextPage = parseInt($scope.currentPage) + 1
 		console.log($scope.nextPage)
 		console.log($scope.previousPage)
+
+		
 	})
 
 	.controller("articleController", function (article, $scope, $stateParams) {
