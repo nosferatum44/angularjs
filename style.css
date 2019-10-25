@@ -31,7 +31,7 @@ a {
     padding: 27px;
     text-align: left;
     border-radius: 15px;
-    background-color: #000;
+    background-color: #555252;
     margin-bottom: 25px;
 }
 
@@ -285,7 +285,7 @@ input:checked+.slider:before {
         padding-bottom: 10px;
     }
     span {
-        top: 33px;
+        top: 5px;
     }
     #pagination input {
         width: 25px;
